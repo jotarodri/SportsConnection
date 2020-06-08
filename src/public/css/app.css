@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*.cabeceraInicio {
+    display: none;
+    background-color: #151719;
+}*/
+
+.contenedor {
+    margin-left: 250px;
+    padding: 1px 16px;
+    height: 100vh;
+}
+
+.crearEvento {
+    /*   width: 100%;*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 200px;
+    margin-right: 10%;
+}
+
+.botonEvento {
+    width: 200px;
+    height: 100px;
+}

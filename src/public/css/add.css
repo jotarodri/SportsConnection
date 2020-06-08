@@ -1,0 +1,119 @@
+        .contenedor {
+            margin-left: 250px;
+            padding: 1px 16px;
+            height: 100vh;
+            background-color: red;
+        }
+        
+        .tipoDeporte {
+            height: 100%;
+            width: 175px;
+            border: 2px solid black;
+            border-radius: 61px 61px 61px 61px;
+            cursor: pointer;
+            margin-right: 20%;
+        }
+        
+        .tipoDeporte:hover {
+            transform: scale(1.08);
+        }
+        
+        .noHover {
+            pointer-events: none;
+        }
+        
+        .PopupPanel {
+            border: solid 1px black;
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            background-color: white;
+            z-index: 100000;
+            height: 700px;
+            margin-top: -200px;
+            width: 600px;
+            margin-left: -300px;
+            visibility: hidden;
+            border-radius: 61px 61px 61px 61px;
+        }
+        
+        .visible {
+            visibility: visible !important;
+        }
+        
+        .noScroll {
+            overflow: hidden;
+        }
+        
+        .tipoDeporte img {
+            margin-top: 5%;
+        }
+        
+        .gridDeportes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 40px;
+            margin-left: 6%;
+            margin-right: 5%;
+        }
+        
+        .deporte {
+            cursor: pointer;
+        }
+        
+        .deporte:hover {
+            color: #FFFFFF;
+            background-color: #00FF7C;
+            border: 1px solid #00FF7C;
+            border-radius: 5px;
+            box-shadow: 0px 5px 0px #00823F;
+        }
+        
+        .creacionEvento {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .privacidad {
+            margin-left: 20%;
+        }
+        
+        #map {
+            height: 300px;
+        }
+        
+        .search {
+            border: 1px solid red;
+        }
+        
+        #myUL {
+            /* Remove default list styling */
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #myUL li a {
+            border: 1px solid #ddd;
+            /* Add a border to all links */
+            margin-top: -1px;
+            /* Prevent double borders */
+            background-color: #f6f6f6;
+            /* Grey background color */
+            padding: 12px;
+            /* Add some padding */
+            text-decoration: none;
+            /* Remove default text underline */
+            font-size: 18px;
+            /* Increase the font-size */
+            color: black;
+            /* Add a black text color */
+            display: block;
+            /* Make it into a block element to fill the whole list */
+        }
+        
+        .invisible {
+            visibility: hidden;
+        }
