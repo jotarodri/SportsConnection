@@ -15,7 +15,7 @@
   
 </div>
         <div class="card">
-         <div class="PopupPanel">
+         <!--<div class="PopupPanel">
             <label class="text-center mt-4">Selecciona un deporte</label>
             <div class="gridDeportes mt-3">
 
@@ -48,11 +48,12 @@
               </div>
 
             </div>
-          </div>
+          </div>-->
           <div class="card-header header-signup text-center">
             <h3 class="registrate">Crea tu evento!</h3>
           </div>
           <div class="card-body {{userDatos.provincia}}">
+            
             <form action="/evento/add" method="POST" name="formularioAdd" class="formulario">
             <div class="form-group input-group">
               <div class="input-group-prepend flex-center">
@@ -167,6 +168,7 @@
                   <img src="/img/muchos.png" alt="" height="100" width="100" class="imgDeportes">
                   <input type="text" name="tipodeporte" class="invisible deporteElegido">
                   <p class="nombreDeporte">Selecciona un deporte</p>
+                  
                 </div>
               </div>
 
@@ -182,6 +184,46 @@
                 <img src="/img/abierto.png" alt="" height="42" width="42" class="ml-3 candado">
 
               </div>
+            </div>
+            <div class="divDeportes invisible">
+              <div class="gridDeportes mt-3">
+
+              <div class="futbol deporte">
+                <img src="/img/deportesIconos/futbol.png" alt="" height="100" width="100" class="imgDeportes">
+                <p class="text-center mt-3">Futbol</p>
+              </div>
+
+              <div class="baloncesto deporte">
+                <img src="/img/deportesIconos/baloncesto.png" alt="" height="100" width="100" class="imgDeportes">
+                <p class="text-center mt-3">Baloncesto</p>
+              </div>
+
+              <div class="running deporte">
+                <img src="/img/deportesIconos/running.png" alt="" height="100" width="100" class="imgDeportes">
+                <p class="text-center mt-3">Running</p>
+              </div>
+
+              <div class="tenis deporte">
+                <img src="/img/deportesIconos/tenis.png" alt="" height="100" width="100" class="imgDeportes">
+                <p class="text-center mt-3">Tenis</p>
+              </div>
+
+              <div class="senderismo deporte">
+                <img src="/img/deportesIconos/senderismo.jpg" alt="" height="100" width="100" class="imgDeportes">
+                <p class="text-center mt-3">Senderismo</p>
+              </div>
+
+              <div class="padel deporte">
+                <img src="/img/deportesIconos/padel.png" alt="" height="100" width="100" class="imgDeportes">
+                <p class="text-center mt-3">Padel</p>
+              </div>
+
+              <div class="beisbol deporte">
+                <img src="/img/deportesIconos/beisbol.png" alt="" height="100" width="100" class="imgDeportes">
+                <p class="text-center mt-3">Beisbol</p>
+              </div>
+
+             </div>
             </div>
 
             <div class="row flex-center eliminado contraseña">

@@ -260,7 +260,7 @@ function getCalle() {
 
 
 function mostrarDeportes() {
-    let deportes = document.querySelectorAll(".PopupPanel")[0];
+    let deportes = document.querySelectorAll(".divDeportes")[0];
     let deportesSeleccion = document.querySelectorAll(".tipoDeporte")[0];
     deportesSeleccion.classList.add("noHover");
     deportes.classList.add("visible");
@@ -281,7 +281,7 @@ function seleccionarDeporte() {
     nombreDeporteElegido.innerHTML = nombreDeporte.toUpperCase();
 
     botonDeportes.classList.remove("noHover");
-    document.querySelectorAll(".PopupPanel")[0].classList.remove("visible")
+    document.querySelectorAll(".divDeportes")[0].classList.remove("visible")
     document.querySelector("body").classList.remove("noScroll")
 
     let inputDeporte = document.querySelector(".deporteElegido");

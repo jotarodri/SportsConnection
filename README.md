@@ -1,13 +1,15 @@
-# SportsConnection
+# Notes App with Nodejs and Mysql
+![](docs/screenshot2.png)
+![](docs/screenshot.png)
 
-Este proyecto consiste en una red social para deportistas, los cuales al registrarse podran crear eventos deportivos como partidos de futbol, baloncesto o quedar con mas gente para hacer running (hay mucha mas variedad de deportes en la app). Los usuarios podran crear estos eventos por una parte, y por otra podrán unirse a eventos que hayan creado otros usuarios. 
+## File Structure
+- database, it the folder with all the sql queries, you can use to recreate the database for this application
+- src, it's all the code for the Backend and Frontend Application
+- docs
 
-Estos eventos estaran formados por:
--Titulo
--Si es publico o privado
--Deporte elegido
--Fecha y hora del evento
--Descripcion
--Cantidad de usuarios que pueden unirse
+## Old Versions of this Project
+- [version-2018](https://github.com/FaztTech/nodejs-mysql-links/tree/version-2018)
 
-Tambien dentro de la app cada usuario podrá tener una lista de amigos y chatear con ellos.
+## Todo
+1. [x] Improve Links Routes
+1. [ ] Write Route Validation with Express Validator

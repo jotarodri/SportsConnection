@@ -1,60 +1,41 @@
-    /*.contenedor {
-    width: 100%;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor {
     margin-left: 250px;
-    height: 100vh;
-    margin-top: 75px;
-    background-color: red;
-}
-
-.tipoDeporte {
+    padding: 1px 16px;
     height: 100%;
-    width: 175px;
-    border: 2px solid black;
+    background-color: green;
+    z-index: 0;
+}
+
+.card {
+    margin-bottom: 5%;
+}
+
+.crearEvento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: green;
+}
+
+.PopupPanel {
+    border: solid 1px black;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    background-color: white;
+    z-index: 100000;
+    height: 700px;
+    margin-top: -200px;
+    width: 600px;
+    margin-left: -300px;
+    visibility: hidden;
     border-radius: 61px 61px 61px 61px;
-    cursor: pointer;
-    margin-right: 20%;
-}
-
-.tipoDeporte:hover {
-    transform: scale(1.08);
-}
-
-.noHover {
-    pointer-events: none;
-}
-
-
-
-.visible {
-    visibility: visible !important;
-}
-
-.noScroll {
-    overflow: hidden;
-}
-
-.tipoDeporte img {
-    margin-top: 5%;
-}
-
-.gridDeportes {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 40px;
-    margin-left: 6%;
-    margin-right: 5%;
-}
-
-.deporte {
-    cursor: pointer;
-}
-
-.deporte:hover {
-    color: #FFFFFF;
-    background-color: #00FF7C;
-    border: 1px solid #00FF7C;
-    border-radius: 5px;
-    box-shadow: 0px 5px 0px #00823F;
 }
 
 .creacionEvento {
@@ -64,12 +45,63 @@
     align-items: center;
 }
 
-.privacidad {
-    margin-left: 20%;
+.tipoDeporte {
+    height: 100%;
+    width: 175px;
+    border: 2px solid black;
+    border-radius: 61px 61px 61px 61px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tipoDeporte:hover {
+    transform: scale(1.08);
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.municipio {
+    cursor: pointer;
+    color: #318aac !important;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background: rgba(0, 0, 0, 0);
+    border: 2px solid;
+    border-color: #318aac;
+    transition: all 1s ease;
+    position: relative;
+}
+
+.municipio:hover {
+    background: #318aac;
+    color: #fff !important;
 }
 
 #map {
-    height: 300px;
+    height: 380px;
+    z-index: 1;
+}
+
+.eliminado {
+    display: none;
+}
+
+.privacidad {
+    margin-left: 10%;
+}
+
+.priv {
+    display: flex;
+    margin-right: 20px;
+    margin-top: 2%;
 }
 
 .search {
@@ -80,6 +112,7 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+    z-index: 9999;
 }
 
 .listaMunicipios li a {
@@ -111,211 +144,81 @@
     color: #fff !important;
 }
 
+.municipioSeleccionado {
+    color: #fff !important;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background: #318aac;
+    border: 2px solid;
+    border-color: #318aac;
+    position: relative;
+}
+
 #map {
     height: 380px;
 }
 
+.tipoDeporte img {
+    margin-top: 5%;
+}
+
+.deporte {
+    cursor: pointer;
+}
+
+.deporte:hover {
+    color: #FFFFFF;
+    background-color: #00FF7C;
+    border: 1px solid #00FF7C;
+    border-radius: 5px;
+    box-shadow: 0px 5px 0px #00823F;
+}
+
+.tarjeta {
+    margin-top: 5% !important;
+}
+
 .eliminado {
     display: none;
-}*/
-    
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    
-    .contenedor {
-        margin-left: 250px;
-        padding: 1px 16px;
-        height: 100%;
-        background-color: green;
-    }
-    
-    .crearEvento {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        background-color: green;
-    }
-    
-    .PopupPanel {
-        border: solid 1px black;
-        position: absolute;
-        left: 50%;
-        top: 100%;
-        background-color: white;
-        z-index: 100000;
-        height: 700px;
-        margin-top: -200px;
-        width: 600px;
-        margin-left: -300px;
-        visibility: hidden;
-        border-radius: 61px 61px 61px 61px;
-    }
-    
-    .creacionEvento {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .tipoDeporte {
-        height: 100%;
-        width: 175px;
-        border: 2px solid black;
-        border-radius: 61px 61px 61px 61px;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .tipoDeporte:hover {
-        transform: scale(1.08);
-    }
-    
-    .flex-center {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .municipio {
-        cursor: pointer;
-        color: #318aac !important;
-        font-size: 20px;
-        font-weight: 500;
-        padding: 0.5em 1.2em;
-        background: rgba(0, 0, 0, 0);
-        border: 2px solid;
-        border-color: #318aac;
-        transition: all 1s ease;
-        position: relative;
-    }
-    
-    .municipio:hover {
-        background: #318aac;
-        color: #fff !important;
-    }
-    
-    #map {
-        height: 380px;
-    }
-    
-    .eliminado {
+}
+
+.borde {
+    border: 1px solid black;
+}
+
+.visible {
+    visibility: visible !important;
+}
+
+.cruz {
+    float: right;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.divDeportes {
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 61px 61px 61px 61px;
+    border: 1px solid black;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    z-index: 1000;
+    background-color: white;
+}
+
+.gridDeportes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 40px;
+    margin-bottom: 5%;
+}
+
+
+/*.eliminado {
         display: none;
-    }
-    
-    .privacidad {
-        margin-left: 10%;
-    }
-    
-    .priv {
-        display: flex;
-        margin-right: 20px;
-        margin-top: 2%;
-    }
-    
-    .search {
-        border: 1px solid #318aac;
-    }
-    
-    .listaMunicipios {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        z-index: 9999;
-    }
-    
-    .listaMunicipios li a {
-        border: 1px solid #ddd;
-        margin-top: -1px;
-        background-color: #f6f6f6;
-        padding: 12px;
-        text-decoration: none;
-        font-size: 18px;
-        color: black;
-        display: block;
-    }
-    
-    .municipio {
-        cursor: pointer;
-        color: #318aac !important;
-        font-size: 20px;
-        font-weight: 500;
-        padding: 0.5em 1.2em;
-        background: rgba(0, 0, 0, 0);
-        border: 2px solid;
-        border-color: #318aac;
-        transition: all 1s ease;
-        position: relative;
-    }
-    
-    .municipio:hover {
-        background: #318aac;
-        color: #fff !important;
-    }
-    
-    .municipioSeleccionado {
-        color: #fff !important;
-        font-size: 20px;
-        font-weight: 500;
-        padding: 0.5em 1.2em;
-        background: #318aac;
-        border: 2px solid;
-        border-color: #318aac;
-        position: relative;
-    }
-    
-    #map {
-        height: 380px;
-    }
-    
-    .tipoDeporte img {
-        margin-top: 5%;
-    }
-    
-    .gridDeportes {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 40px;
-        margin-left: 6%;
-        margin-right: 5%;
-    }
-    
-    .deporte {
-        cursor: pointer;
-    }
-    
-    .deporte:hover {
-        color: #FFFFFF;
-        background-color: #00FF7C;
-        border: 1px solid #00FF7C;
-        border-radius: 5px;
-        box-shadow: 0px 5px 0px #00823F;
-    }
-    
-    .tarjeta {
-        margin-top: 5% !important;
-    }
-    
-    .eliminado {
-        display: none;
-    }
-    
-    .borde {
-        border: 1px solid black;
-    }
-    
-    .visible {
-        visibility: visible !important;
-    }
-    
-    .cruz {
-        float: right;
-        margin-top: 5px;
-        cursor: pointer;
-    }
+    }*/
