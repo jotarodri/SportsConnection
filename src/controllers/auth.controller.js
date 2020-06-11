@@ -40,12 +40,13 @@ authCtrl.renderSignUp = (req, res) => {
     res.render('auth/signup');
 };
 
-
 authCtrl.signUp = passport.authenticate('local.signup', {
-    successRedirect: '/app',
+    successRedirect: '/signin',
     failureRedirect: '/signup',
     failureFlash: true
 });
+
+
 
 authCtrl.renderSignIn = (req, res, next) => {
     res.render('auth/signin');
@@ -62,5 +63,7 @@ authCtrl.logout = (req, res, next) => {
     req.user = null;
     res.redirect('/');
 };
+
+
 
 module.exports = authCtrl;

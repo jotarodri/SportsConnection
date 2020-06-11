@@ -2,19 +2,19 @@ let privacidad;
 var map;
 
 function listeners() {
-    /* let botonDeportes = document.querySelectorAll(".tipoDeporte")[0];
-     botonDeportes.addEventListener("click", mostrarDeportes);*/
+    let botonDeportes = document.querySelectorAll(".tipoDeporte")[0];
+    botonDeportes.addEventListener("click", mostrarDeportes);
 
     let deportes = document.querySelectorAll(".deporte");
     deportes.forEach(deporte => {
         deporte.addEventListener("click", seleccionarDeporte);
     });
 
-    /* let botonesPrivacidad = document.querySelectorAll(".btn");
+    let botonesPrivacidad = document.querySelectorAll(".btn");
 
-     botonesPrivacidad.forEach(btn => {
-         btn.addEventListener("click", cambiarPrivacidad);
-     });*/
+    botonesPrivacidad.forEach(btn => {
+        btn.addEventListener("click", cambiarPrivacidad);
+    });
 }
 
 function mostrarDeportes() {
@@ -45,6 +45,7 @@ function seleccionarDeporte() {
 }
 
 function cambiarPrivacidad() {
+
 
     let imgCandado = document.querySelectorAll(".candado")[0];
 

@@ -7,16 +7,22 @@ eventosCtrl.renderAddEvento = (req, res) => {
 };
 
 eventosCtrl.addEvento = async(req, res) => {
-    const { title, url, description } = req.body;
+    const { titulo, tipodeporte, nparticipantes, day, month, year, hour, password, description } = req.body;
+    let acaba_el = day + "/" + month + "/" + year + " - " + hour;
     const newLink = {
-        title,
-        url,
+        titulo,
+        tipodeporte,
+        nparticipantes,
+        acaba_el,
+        password,
         description,
         user_id: req.user[0].id
     };
-    await pool.query('INSERT INTO links set ?', [newLink]);
+    await pool.query('INSERT INTO eventos set ?', [newLink]);
     req.flash('success', 'Evento Creado Correctamente');
     res.redirect('/eventos');
+
+
 }
 
 eventosCtrl.renderEventos = async(req, res) => {

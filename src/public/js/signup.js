@@ -9,7 +9,7 @@ let contraseña2;
 let comunidadesaux = [];
 let datosJson;
 
-
+let deporteElegido;
 
 function listener() {
 
@@ -49,8 +49,8 @@ function iniciarComprobantes() {
     let comprobanteNombre = comprobarNombre();
     let comprobanteUsuario = comprobarUsuario();
     let comprobanteCorreo = comprobarCorreo();
-    let comprobanteContraseña = comprobarContraseña();
-    let comprobanteContraseñaRepetida = comprobarContraseñaRepetida();
+    /*let comprobanteContraseña = comprobarContraseña();
+    let comprobanteContraseñaRepetida = comprobarContraseñaRepetida();*/
 
 
     let nombre = document.getElementsByClassName("nombre")[0].value;
@@ -95,48 +95,48 @@ function iniciarComprobantes() {
 
         }
 
-        if (!comprobanteContraseña) {
+        /* if (!comprobanteContraseña) {
 
-            let alerta = document.createElement("div");
-            alerta.classList.add("alert");
-            alerta.classList.add("alert-danger");
-            alerta.innerHTML = "La contraseña no cumple los requisitos";
-            alertas.appendChild(alerta);
+             let alerta = document.createElement("div");
+             alerta.classList.add("alert");
+             alerta.classList.add("alert-danger");
+             alerta.innerHTML = "La contraseña no cumple los requisitos";
+             alertas.appendChild(alerta);
 
-            let cruz = document.createElement("img");
-            cruz.classList.add("cruz");
-            cruz.src = "/img/cruz.png";
-            cruz.width = "15";
-            cruz.height = "15";
-            alerta.appendChild(cruz);
+             let cruz = document.createElement("img");
+             cruz.classList.add("cruz");
+             cruz.src = "/img/cruz.png";
+             cruz.width = "15";
+             cruz.height = "15";
+             alerta.appendChild(cruz);
 
-            cruz.addEventListener("click", deleteAlerta);
+             cruz.addEventListener("click", deleteAlerta);
 
-        }
+         }
 
-        if (!comprobanteContraseñaRepetida) {
+         if (!comprobanteContraseñaRepetida) {
 
-            let alerta = document.createElement("div");
-            alerta.classList.add("alert");
-            alerta.classList.add("alert-danger");
-            alerta.innerHTML = "Las contraseñas no coinciden";
-            alertas.appendChild(alerta);
+             let alerta = document.createElement("div");
+             alerta.classList.add("alert");
+             alerta.classList.add("alert-danger");
+             alerta.innerHTML = "Las contraseñas no coinciden";
+             alertas.appendChild(alerta);
 
-            let cruz = document.createElement("img");
-            cruz.classList.add("cruz");
-            cruz.src = "/img/cruz.png";
-            cruz.width = "15";
-            cruz.height = "15";
-            alerta.appendChild(cruz);
+             let cruz = document.createElement("img");
+             cruz.classList.add("cruz");
+             cruz.src = "/img/cruz.png";
+             cruz.width = "15";
+             cruz.height = "15";
+             alerta.appendChild(cruz);
 
-            cruz.addEventListener("click", deleteAlerta);
+             cruz.addEventListener("click", deleteAlerta);
 
-        }
+         }*/
 
 
     }
 
-    if (comprobanteNombre && comprobanteUsuario && comprobanteCorreo && comprobanteContraseña && comprobanteContraseñaRepetida) {
+    if (comprobanteNombre && comprobanteUsuario && comprobanteCorreo /*&& comprobanteContraseña && comprobanteContraseñaRepetida*/ ) {
         //Si todo ha ido bien vamos al paso 2
         alPasoDos();
 
@@ -326,11 +326,13 @@ function fijarDiv() {
 }
 
 function pasoTres() {
-    if (deporteElegido == "") {
+    console.log(deporteElegido);
+    enviarForm();
+    /*if (deporteElegido == "") {
         crearAlertas("Debes seleccionar un deporte");
     } else {
-        enviarForm();
-    }
+        
+    }*/
 }
 
 function enviarForm() {

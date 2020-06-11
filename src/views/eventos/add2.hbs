@@ -1,21 +1,12 @@
-<link rel="stylesheet" href="/css/add.css">
-<script src="/js/mapa.js"></script>
-
-{{>navigation}}
-{{>sidebar}}
 
 <div class="contenedor">
-  
-  <div class="crearEvento mt-5 pt-5">
+
+  <div class="container p-5 mt-5">
 
     <div class="row">
-      
-      <div class="col-md-12 mx-auto tarjeta">
-        <div class="alertas">
-  
-</div>
-        <div class="card">
-         <div class="PopupPanel">
+      <div class="col-md-12 mx-auto">
+        <div class="card text-center">
+          <div class="PopupPanel">
             <label class="text-center mt-4">Selecciona un deporte</label>
             <div class="gridDeportes mt-3">
 
@@ -49,33 +40,33 @@
 
             </div>
           </div>
-          <div class="card-header header-signup text-center">
-            <h3 class="registrate">Crea tu evento!</h3>
-          </div>
-          <div class="card-body {{userDatos.provincia}}">
-            <form action="/evento/add" method="POST" name="formularioAdd" class="formulario">
-            <div class="form-group input-group">
-              <div class="input-group-prepend flex-center">
-                <label>Título del Evento</label>
-                <div class="input-group-prepend ml-3">
-                  <input type="type" name="titulo" placeholder="Titulo" class="form-control mr-5 borde tituloevento" autofocus>
-                </div>
 
-                <label>Cantidad de personas</label>
-                <div class="input-group-prepend ml-3">
-                  <input class="form-control borde nparticipantes" type="number" value="1" id="example-number-input" name="nparticipantes">
-                </div>
+          <div class="card-header header-signup">
+            <h3 class="registrate">Crea tu evento!</h3>
+            <p class="right"></p>
+          </div>
+
+          <div class="card-body {{userDatos.provincia}}">
+
+            <div class="form-group input-group creacionEvento">
+              <label>Título del Evento</label>
+              <div class="input-group-prepend ml-3">
+                <input type="type" name="nombre" placeholder="Titulo" class="form-control mr-5 nombre" autofocus>
+              </div>
+
+              <label>Cantidad de personas</label>
+              <div class="input-group-prepend ml-3">
+                <input class="form-control" type="number" value="1" id="example-number-input">
               </div>
 
             </div>
 
-            <p class="text-center flex-center mt-3">Fecha y hora del evento</p>
 
-
+            <label class="mt-4">Fecha y hora del evento</label>
             <div class="row">
 
               <div class="col-xs-3 col-md-3 form-group input-group">
-                <select name="day" class="form-control input-lg borde dia">
+                <select name="day" class="form-control input-lg">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -109,7 +100,7 @@
                   <option value="31">31</option>
                 </select> </div>
               <div class="col-xs-3 col-md-3">
-                <select name="month" class="form-control input-lg borde mes">
+                <select name="month" class="form-control input-lg">
                   <option value="01">Enero</option>
                   <option value="02">Febrero</option>
                   <option value="03">Marzo</option>
@@ -124,93 +115,66 @@
                   <option value="12">Diciembre</option>
                 </select> </div>
               <div class="col-xs-3 col-md-3">
-                <select name="year" class="form-control input-lg borde año">
+                <select name="year" class="form-control input-lg">
                   <option value="2020">2020</option>
                 </select>
               </div>
               <div class="col-xs-3 col-md-3">
-                <input type="time" name="hour" value="" class="form-control input-lg borde hora" max="23:00">
+                <input type="time" name="hour" value="" class="form-control input-lg" max="23:00">
                 </select>
               </div>
+
             </div>
 
-            <p class="mt-4 text-center">Descripcion y lugar del evento</p>
+            <label class="mt-4">Descripcion y lugar del evento</label>
+
             <div class="form-group input-group row">
 
               <div class="input-group-prepend col-xs-12 col-md-12" id="">
-                <input class="form-control mr-sm-2 search borde" type="search" placeholder="Search" aria-label="Search">
-
+                <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search">
+                
               </div>
               <div class="resultados col-xs-12 col-md-12 mt-3">
-                <ul class="listaMunicipioSeleccionado">
-                  <li class="municipioSeleccionado">{{userDatos.provincia}}</li>
-                </ul>
-                <ul class="listaMunicipios">
-
+              <ul class="listaMunicipios">
+                 
                 </ul>
               </div>
-              <div class="resultados col-xs-12 col-md-12 mt-3">
-                <ul class="listaMunicipios">
 
-                </ul>
-
-                <div id="map"></div>
-              </div>
 
             </div>
+
+            <div id="map"></div>
+
 
             <div class="form-group input-group creacionEvento">
-
-              <div class="input-group-prepend ">
-                
-                <div class="tipoDeporte">
-                  <img src="/img/muchos.png" alt="" height="100" width="100" class="imgDeportes">
-                  <input type="text" name="tipodeporte" class="invisible deporteElegido">
-                  <p class="nombreDeporte">Selecciona un deporte</p>
+              
+                <div class="input-group-prepend ">
+                  <div class="tipoDeporte">
+                    <img src="/img/muchos.png" alt="" height="100" width="100" class="imgDeportes">
+                    <p class="nombreDeporte">Selecciona un deporte</p>
+                  </div>
                 </div>
-              </div>
+                  
+                  
+                  <div class="btn-group btn-group-toggle privacidad" data-toggle="buttons">
+                  <label class="btn btn-success active publico">
+                    <input type="radio" name="options" id="option1" checked> Publico
+                  </label>
+                  <label class="btn btn-danger privado">
+                    <input type="radio" name="options" id="option2"> Privado
+                  </label>
+                  <img src="/img/abierto.png" alt="" height="42" width="42" class="ml-3 candado">
+                  
+                </div>
 
-                 <p class="priv privacidad">Tipo de evento:</p>
-              <div class="btn-group btn-group-toggle " data-toggle="buttons">
-                   
-                <label class="btn btn-success active publico btnPrivacidad">
-                  <input type="radio" name="options" id="option1" checked> Publico
-                </label>
-                <label class="btn btn-danger privado btnPrivacidad">
-                  <input type="radio" name="options" id="option2"> Privado
-                </label>
-                <img src="/img/abierto.png" alt="" height="42" width="42" class="ml-3 candado">
 
-              </div>
-            </div>
 
-            <div class="row flex-center eliminado contraseña">
-              <div class="col-xs-3 col-md-3">
-                <p class="text-center">Contraseña</p>
-                <input type="type" name="password" placeholder="Titulo" class="form-control mr-5 borde password" autofocus>
-              </div>
-            </div>
-            
-             <div class="form-group input-group">
-
-              <div class="input-group-prepend ">
-               <div class="descripcion">
-                 <p class="text-center descripcion">Descripción del evento</p>
-                   <textarea class="form-control descripciontext borde" id="exampleFormControlTextarea1" rows="3" cols="100" name="description"></textarea>
-              </div>
-
-              </div>
-            </div>
-           
-           </form>
-            <div class="form-group input-group flex-center mt-5">
-                <button type="button" class="btn btn-success enviarForm"> <i class="fas fa-check"></i> Crear evento</button>
-            </div>
-
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
+
 </div>
