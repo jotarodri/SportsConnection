@@ -29,3 +29,85 @@
     width: 200px;
     height: 100px;
 }
+
+.eventos {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+    margin-bottom: 5%;
+}
+
+.tarjetaEvento {
+    height: 300px;
+    width: 600px;
+    background-color: white;
+    border: 2px solid black;
+}
+
+.parteSuperior {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    color: black;
+}
+
+.parteInferior {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    color: black;
+}
+
+.imagenDeporte {
+    height: 140px;
+    width: 50%;
+    background-image: url("/img/deportesReal/futbol.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tituloEvento {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+}
+
+.muni {
+    margin-top: 110px;
+    width: 50%;
+    height: 50%;
+    background-color: green;
+}
+
+.participantesEvento {
+    width: 30%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.acabaEl {
+    width: 30%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.verEvento {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eventButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

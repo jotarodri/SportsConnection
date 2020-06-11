@@ -64,7 +64,7 @@
 
                 <label>Cantidad de personas</label>
                 <div class="input-group-prepend ml-3">
-                  <input class="form-control borde nparticipantes" type="number" value="1" id="example-number-input" name="nparticipantes">
+                  <input class="form-control borde nparticipantes" type="number" value="1" id="example-number-input" name="nparticipantesMAX">
                 </div>
               </div>
 
@@ -130,7 +130,7 @@
                 </select>
               </div>
               <div class="col-xs-3 col-md-3">
-                <input type="time" name="hour" value="" class="form-control input-lg borde hora" max="23:00">
+                <input type="time" name="hora" value="" class="form-control input-lg borde hora" max="23:00">
                 </select>
               </div>
             </div>
@@ -186,6 +186,7 @@
               </div>
             </div>
             <div class="divDeportes invisible">
+              <p class="text-center">Selecciona un deporte</p>
               <div class="gridDeportes mt-3">
 
               <div class="futbol deporte">
@@ -243,6 +244,10 @@
 
               </div>
             </div>
+              <input type="type" name="municipio" placeholder="Titulo" class="invisible municipioElegido" >
+              <input type="type" name="inputLongitud" placeholder="Titulo" class="invisible longitudElegida" >
+              <input type="type" name="inputLatitud" placeholder="Titulo" class="invisible latitudElegida" >
+
            
            </form>
             <div class="form-group input-group flex-center mt-5">

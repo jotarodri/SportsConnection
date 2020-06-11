@@ -36,6 +36,9 @@ function listeners() {
     let botonCrear = document.querySelector(".enviarForm");
     botonCrear.addEventListener("click", comprobarInputs);
 
+    let inputMunicipioSeleccionado = document.querySelector(".municipioElegido");
+    inputMunicipioSeleccionado.value = provincia;
+
 }
 //AQUI EMPIEZA LA PARTE DEL MAPA
 function mostrarDatos() {
@@ -145,8 +148,15 @@ function getDatosMunicipio() {
         }
     });
 
+    if (municipioSeleccionado = "") {
+        municipioSeleccionado = provincia;
+    }
+    console.log(municipioSeleccionado);
+
+
     let municipioSeleccionadoDiv = document.querySelector(".municipioSeleccionado");
     municipioSeleccionadoDiv.innerHTML = municipioSeleccionado;
+
 
     crearMapa(datosSeleccionado);
 
@@ -223,7 +233,13 @@ function crearMapaInicial() {
                 draggable: true,
                 opacity: 0.75
             }).bindPopup("<i>Augusta Emerita</i>").addEventListener("dragend", getCalle)
-            .addTo(mymap);;
+            .addTo(mymap);
+
+        let inputLatitud = document.querySelector(".longitudElegida");
+        inputLatitud.value = municipioOriginal.coordenadaX;
+
+        let inputLongitud = document.querySelector(".latitudElegida");
+        inputLongitud.value = municipioOriginal.coordenadaY;
     }
 
 
@@ -244,15 +260,11 @@ function getCalle() {
     console.log(latitudEvento);
     console.log(longitudEvento);
 
-    let inputLatitud = document.createElement("input");
-    inputLatitud.name = "inputLatitud";
+    let inputLatitud = document.querySelector(".longitudElegida");
     inputLatitud.value = longitudEvento;
-    inputLatitud.classList.add("invisible");
 
-    let inputLongitud = document.createElement("input");
-    inputLongitud.name = "inputLatitud";
+    let inputLongitud = document.querySelector(".latitudElegida");
     inputLongitud.value = latitudEvento;
-    inputLongitud.classList.add("invisible");
 
 }
 
@@ -340,7 +352,7 @@ function comprobarInputs() {
 
     if (nparticipantes == 0) {
         crearAlertas("No pueden haber 0 participantes");
-    } else if (nparticipantes < 0) {
+    } else if (nparticipantes.value < 0) {
         crearAlertas("No puedes poner un numero negativo de participantes");
     }
 
@@ -356,7 +368,14 @@ function comprobarInputs() {
         crearAlertas("Debes elegir un deporte");
     }
 
-    if (titulo.value != "" && nparticipantes != 0 && nparticipantes > 0 && privacidad == "privado" && password.value != "" && descripcion.value != "" && deporteElegido.value != "") {
+    if (titulo.value != "" && nparticipantes.value != 0 && nparticipantes.value > 0 && privacidad == "privado" && password.value != "" && descripcion.value != "" && deporteElegido.value != "") {
+
+        enviarForm();
+    }
+
+    if (titulo.value != "" && nparticipantes.value != 0 && nparticipantes.value > 0 && privacidad == "publico" && descripcion.value != "" && deporteElegido.value != "") {
+        console.log("Envio form");
+
         enviarForm();
     }
 

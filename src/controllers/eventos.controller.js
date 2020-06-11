@@ -7,20 +7,28 @@ eventosCtrl.renderAddEvento = (req, res) => {
 };
 
 eventosCtrl.addEvento = async(req, res) => {
-    const { titulo, tipodeporte, nparticipantes, day, month, year, hour, password, description } = req.body;
-    let acaba_el = day + "/" + month + "/" + year + " - " + hour;
+    const { titulo, tipodeporte, nparticipantesMAX, day, month, year, hora, password, description, municipio, inputLongitud, inputLatitud } = req.body;
+    let fecha = year + "-" + month + "-" + day;
+    let direccion = inputLatitud + " - " + inputLongitud;
+    let nparticipantes = "1";
+
     const newLink = {
         titulo,
         tipodeporte,
-        nparticipantes,
-        acaba_el,
-        password,
         description,
+        nparticipantes,
+        nparticipantesMAX,
+        password,
+        fecha,
+        hora,
+        municipio,
+        direccion,
         user_id: req.user[0].id
     };
-    await pool.query('INSERT INTO eventos set ?', [newLink]);
+    const result = await pool.query('INSERT INTO eventos set ?', [newLink]);
+    /*newLink.id = result.insertId;
     req.flash('success', 'Evento Creado Correctamente');
-    res.redirect('/eventos');
+    res.redirect('/eventos');*/
 
 
 }
@@ -56,5 +64,6 @@ eventosCtrl.editEvento = async(req, res) => {
     req.flash('success', 'Evento Actualizado Correctamente');
     res.redirect('/eventos');
 }
+
 
 module.exports = eventosCtrl;
