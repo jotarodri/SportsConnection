@@ -28,26 +28,24 @@ DESCRIBE usuarios;
 
 
 CREATE TABLE eventos (
-  id INT(11) NOT NULL,
+  id INT(11) NOT NULL PRIMARY KEY,
   titulo VARCHAR(150) NOT NULL,
   tipodeporte VARCHAR(255) NOT NULL,
   description TEXT,
   nparticipantes INT(11) NOT NULL,
+  nparticipantesMAX INT(11) NOT NULL,
   password VARCHAR(11),
   created_at timestamp NOT NULL DEFAULT current_timestamp,
-  acaba_el DATE NOT NULL,
+  fecha DATE NOT NULL,
+  hora VARCHAR(100),
+  municipio VARCHAR(100),
   direccion VARCHAR(100),
   user_id INT(11),
   CONSTRAINT fk_userid FOREIGN KEY(user_id) REFERENCES usuarios(id)
 );
-/*
-user_usuario VARCHAR(150),
-  CONSTRAINT fk_username FOREIGN KEY(user_usuario) REFERENCES usuarios(usuario)*/
 
-ALTER TABLE links
-  ADD PRIMARY KEY (id);
 
-ALTER TABLE links
+ALTER TABLE eventos
   MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;
 
-DESCRIBE links;
+DESCRIBE eventos;
