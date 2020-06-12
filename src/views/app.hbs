@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/app.css">
+<script src="/js/filtrador.js"></script>
 {{>navigation}}
 {{>sidebar}}
 
@@ -16,16 +17,35 @@
 
   </div>
   <hr>
-
+  <div class="containerEventos">
+    
+<p class="links oculto">{{links.length}}</p>
+  
+{{#each links}}
+<p class="id oculto">{{id}}</p>
+<p class="tituloEvento oculto">{{titulo}}</p>
+<p class="tipodeporte oculto">{{tipodeporte}}</p>
+<p class="description oculto">{{description}}</p>
+<p class="nparticipantes oculto">{{nparticipantes}}</p>
+<p class="nparticipantesMAX oculto">{{nparticipantesMAX}}</p>
+<p class="created_at oculto">{{created_at}}</p>
+<p class="password oculto">{{password}}</p>
+<p class="fecha oculto">{{fecha}}</p>
+<p class="hora oculto">{{hora}}</p>
+<p class="municipio oculto">{{municipio}}</p>
+<p class="direccion oculto">{{direccion}}</p>
+<p class="user_id oculto">{{user_id}}</p>
+<p class="comunidad oculto">{{comunidad}}</p>
+{{/each}}
   <div class="eventos">
     <div class="tarjetaEvento">
       <div class="parteSuperior">
         <div class="imagenDeporte">
         </div>
         <div class="tituloEvento">
-          <h3 class="eventoTitulo">Titulo: </h3>
+          <h3 class="eventoTitulo">{{titulo}} </h3>
           <div class="muni">
-            <h5 class="eventoTitulo">Municipio: </h5>
+            <h5 class="eventoTitulo">{{municipio}} </h5>
           </div>
           </div>
         
@@ -53,8 +73,10 @@
     </div>
   </div>
 
+  
+
 </div>
 
-
+</div>
 
 </div>

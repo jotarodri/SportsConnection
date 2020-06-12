@@ -6,6 +6,7 @@ let localidades = {
     coordenadaX: "",
 };
 let provincia;
+let comunidad;
 var mymap;
 
 let privacidad = "publico";
@@ -412,6 +413,10 @@ function deleteAlerta() {
 
 function init() {
     provincia = document.querySelectorAll(".card-body")[0].classList[1].toUpperCase();
+    comunidad = document.querySelectorAll(".card-body")[0].classList[2].toUpperCase();
+
+    let comunidadEvento = document.querySelector(".comunidad");
+    comunidadEvento.value = comunidad;
 
     mostrarDatos();
     listeners();

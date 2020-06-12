@@ -15,44 +15,11 @@
   
 </div>
         <div class="card">
-         <!--<div class="PopupPanel">
-            <label class="text-center mt-4">Selecciona un deporte</label>
-            <div class="gridDeportes mt-3">
-
-              <div class="futbol deporte">
-                <img src="/img/deportesIconos/futbol.png" alt="" height="100" width="100" class="imgDeportes">
-              </div>
-
-              <div class="baloncesto deporte">
-                <img src="/img/deportesIconos/baloncesto.png" alt="" height="100" width="100" class="imgDeportes">
-              </div>
-
-              <div class="beisbol deporte">
-                <img src="/img/deportesIconos/beisbol.png" alt="" height="100" width="100" class="imgDeportes">
-              </div>
-
-              <div class="padel deporte">
-                <img src="/img/deportesIconos/padel.png" alt="" height="100" width="100" class="imgDeportes">
-              </div>
-
-              <div class="running deporte">
-                <img src="/img/deportesIconos/running.png" alt="" height="100" width="100" class="imgDeportes">
-              </div>
-
-              <div class="senderismo deporte">
-                <img src="/img/deportesIconos/senderismo.jpg" alt="" height="100" width="100" class="imgDeportes">
-              </div>
-
-              <div class="tenis deporte">
-                <img src="/img/deportesIconos/tenis.png" alt="" height="100" width="100" class="imgDeportes">
-              </div>
-
-            </div>
-          </div>-->
+    
           <div class="card-header header-signup text-center">
             <h3 class="registrate">Crea tu evento!</h3>
           </div>
-          <div class="card-body {{userDatos.provincia}}">
+          <div class="card-body {{userDatos.provincia}} {{userDatos.comunidad}}">
             
             <form action="/evento/add" method="POST" name="formularioAdd" class="formulario">
             <div class="form-group input-group">
@@ -247,6 +214,7 @@
               <input type="type" name="municipio" placeholder="Titulo" class="invisible municipioElegido" >
               <input type="type" name="inputLongitud" placeholder="Titulo" class="invisible longitudElegida" >
               <input type="type" name="inputLatitud" placeholder="Titulo" class="invisible latitudElegida" >
+              <input type="type" name="comunidad" placeholder="Titulo" class="invisible comunidad" >
 
            
            </form>
@@ -261,3 +229,7 @@
     </div>
   </div>
 </div>
+
+  <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8N-QJbll1msnAUGZY45mVqdqQYCk-F-U&callback=crearMapaInicial">
+    </script>

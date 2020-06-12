@@ -51,6 +51,9 @@ app.use((req, res, next) => {
     if (req.isAuthenticated()) {
         app.locals.userDatos = req.user[0];
     }
+    // app.locals.eventos = req.links;
+
+    next
     next();
 });
 

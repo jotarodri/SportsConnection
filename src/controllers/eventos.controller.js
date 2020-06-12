@@ -1,13 +1,14 @@
 const eventosCtrl = {};
 
 const pool = require('../database');
+const { renderApp } = require('./index.conroller');
 
 eventosCtrl.renderAddEvento = (req, res) => {
     res.render('eventos/add');
 };
 
 eventosCtrl.addEvento = async(req, res) => {
-    const { titulo, tipodeporte, nparticipantesMAX, day, month, year, hora, password, description, municipio, inputLongitud, inputLatitud } = req.body;
+    const { titulo, tipodeporte, nparticipantesMAX, day, month, year, hora, password, description, municipio, inputLongitud, inputLatitud, comunidad } = req.body;
     let fecha = year + "-" + month + "-" + day;
     let direccion = inputLatitud + " - " + inputLongitud;
     let nparticipantes = "1";
@@ -23,20 +24,25 @@ eventosCtrl.addEvento = async(req, res) => {
         hora,
         municipio,
         direccion,
-        user_id: req.user[0].id
+        user_id: req.user[0].id,
+        comunidad
     };
     const result = await pool.query('INSERT INTO eventos set ?', [newLink]);
-    /*newLink.id = result.insertId;
+    newLink.id = result.insertId;
     req.flash('success', 'Evento Creado Correctamente');
-    res.redirect('/eventos');*/
+    //res.redirect('/app', { result });
 
 
 }
 
 eventosCtrl.renderEventos = async(req, res) => {
-    const links = await pool.query('SELECT * FROM eventos WHERE user_id = ?', [req.user[0].id]);
-    res.render('eventos/list', { links });
+
+    const links = await pool.query('SELECT * FROM eventos');
+    return links;
+
+
 }
+
 
 eventosCtrl.deleteEvento = async(req, res) => {
     const { id } = req.params;
@@ -65,5 +71,9 @@ eventosCtrl.editEvento = async(req, res) => {
     res.redirect('/eventos');
 }
 
+eventosCtrl.getEventos = async(req, res) => {
+    const links = await pool.query('SELECT * FROM eventos');
+    return links;
+}
 
 module.exports = eventosCtrl;

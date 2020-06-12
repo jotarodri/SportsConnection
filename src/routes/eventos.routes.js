@@ -9,11 +9,13 @@ const { renderAddEvento, addEvento, renderEventos, deleteEvento, editEvento, ren
 router.use(isLoggedIn);
 
 // Routes
+
 router.get('/add', renderAddEvento);
 router.post('/add', addEvento);
-router.get('/', isLoggedIn, renderEventos);
+router.get('/', isLoggedIn);
 router.get('/delete/:id', deleteEvento);
 router.get('/edit/:id', renderEditEvento);
 router.post('/edit/:id', editEvento);
+
 
 module.exports = router;

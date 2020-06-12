@@ -13,16 +13,23 @@
     margin-left: 250px;
     padding: 1px 16px;
     /*height: 100vh;*/
-    background-color: green;
+    background-size: cover;
 }
 
 .crearEvento {
-    /*   width: 100%;*/
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     height: 200px;
     margin-right: 10%;
+    background-color: green;
+}
+
+.eventos {
+    height: 100%;
+    width: 100%;
+    background-color: red;
 }
 
 .botonEvento {
@@ -30,12 +37,15 @@
     height: 100px;
 }
 
-.eventos {
-    width: 100%;
-    height: 100%;
+.containerEventos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 40px;
+}
+
+.eventos {
+    width: 100%;
+    height: 100%;
     margin-bottom: 5%;
 }
 
@@ -74,7 +84,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
+    color: black;
 }
 
 .muni {
@@ -110,4 +120,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.oculto {
+    display: none;
 }
