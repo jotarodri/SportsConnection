@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "start": "node src/index.js ",
         "dev": "nodemon src/index.js"
     },
     "keywords": [],
@@ -22,7 +23,9 @@
         "mysql": "^2.17.1",
         "passport": "^0.4.0",
         "passport-local": "^1.0.0",
-        "timeago.js": "^4.0.1"
+        "requirejs": "^2.3.6",
+        "timeago.js": "^4.0.1",
+        "uniq": "^1.0.1"
     },
     "devDependencies": {
         "nodemon": "^1.19.4",
