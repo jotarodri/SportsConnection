@@ -56,7 +56,8 @@ function filtrarPorComunidad() {
                 "nparticipantesMAX": evento.nparticipantesMAX,
                 "fecha": evento.fecha,
                 "hora": evento.hora,
-                "municipio": evento.municipio
+                "municipio": evento.municipio,
+                "deporte": evento.tipodeporte
             }
 
             eventosComunidad.push(eventoComunidadUsuario);
@@ -94,6 +95,7 @@ function crearParteSuperior(evento) {
 
     let imageDeporte = document.createElement("div");
     imageDeporte.classList.add("imagenDeporte");
+    imageDeporte.style.backgroundImage = "url(" + getImagenDeporte(evento) + ")";
 
     let tituloEvento = document.createElement("div");
     tituloEvento.classList.add("tituloEvento");
@@ -139,7 +141,8 @@ function crearParteInferior(evento) {
     let acabaEl = document.createElement("h5");
     acabaEl.classList.add("ml-5");
     let fecha = new Date(evento.fecha);
-    acabaEl.innerHTML = fecha.getDate() + " / " + fecha.getMonth() + 1 + " / " + fecha.getFullYear();
+    let mes = fecha.getMonth() + 1;
+    acabaEl.innerHTML = fecha.getDate() + " / " + mes + " / " + fecha.getFullYear();
 
     acabaElEvento.appendChild(acabaEl);
 
@@ -174,8 +177,47 @@ function crearParteInferior(evento) {
 
 }
 
-function getImagenDeporte() {
+function getImagenDeporte(evento) {
 
+    console.log(evento);
+
+
+    let tipodeporte = evento.deporte;
+    let imagen;
+    switch (tipodeporte) {
+        case "FUTBOL":
+            imagen = "/img/deportesReal/futbol.jpg"
+            break;
+
+        case "BALONCESTO":
+            imagen = "/img/deportesReal/baloncesto.jpg"
+            break;
+
+        case "BEISBOL":
+            imagen = "/img/deportesReal/beisbol.jpeg"
+            break;
+
+        case "PADEL":
+            imagen = "/img/deportesReal/padel.jpg"
+            break;
+
+        case "RUNNING":
+            imagen = "/img/deportesReal/running.jpg"
+            break;
+
+        case "PADEL":
+            imagen = "/img/deportesReal/padel.jpg"
+            break;
+
+        case "TENIS":
+            imagen = "/img/deportesReal/tenis.gif"
+            break;
+
+        case "SENDERISMO":
+            imagen = "/img/deportesReal/descarga.jpg"
+            break;
+    }
+    return imagen;
 }
 
 function init() {
