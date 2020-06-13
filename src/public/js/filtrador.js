@@ -64,15 +64,122 @@ function filtrarPorComunidad() {
 
     });
 
-    console.log(eventosComunidad);
+    crearDivs();
 
+
+}
+
+function crearDivs() {
+    let eventos = document.querySelector(".eventos");
+    eventosComunidad.forEach(evento => {
+        let tarjetaEvento = document.createElement("div");
+        tarjetaEvento.classList.add("tarjetaEvento");
+
+        let parteSuperior = crearParteSuperior(evento);
+        let parteInferior = crearParteInferior(evento);
+
+        tarjetaEvento.appendChild(parteSuperior);
+        tarjetaEvento.appendChild(parteInferior);
+        eventos.appendChild(tarjetaEvento);
+    });
+
+
+}
+
+function crearParteSuperior(evento) {
+
+
+    let parteSuperior = document.createElement("div");
+    parteSuperior.classList.add("parteSuperior");
+
+    let imageDeporte = document.createElement("div");
+    imageDeporte.classList.add("imagenDeporte");
+
+    let tituloEvento = document.createElement("div");
+    tituloEvento.classList.add("tituloEvento");
+
+    let eventoTitulo = document.createElement("h4");
+    eventoTitulo.classList.add("eventoTitulo");
+    eventoTitulo.innerHTML = evento.titulo;
+
+    let muni = document.createElement("div");
+    muni.classList.add("muni");
+
+    let eventoMunicipio = document.createElement("h5");
+    eventoMunicipio.classList.add("eventoMunicipio");
+    eventoMunicipio.innerHTML = evento.municipio
+
+    parteSuperior.appendChild(imageDeporte);
+    parteSuperior.appendChild(tituloEvento);
+    tituloEvento.appendChild(eventoTitulo);
+    muni.appendChild(eventoMunicipio);
+    tituloEvento.appendChild(muni);
+
+
+    return parteSuperior;
+}
+
+function crearParteInferior(evento) {
+    let parteInferior = document.createElement("div");
+    parteInferior.classList.add("parteInferior");
+
+    let participantesEvento = document.createElement("div");
+    participantesEvento.classList.add("participantesEvento");
+
+    let numeroParticipantes = document.createElement("h5");
+    numeroParticipantes.classList.add("ml-5");
+    numeroParticipantes.innerHTML = evento.nparticipantes + " / " + evento.nparticipantesMAX;
+
+    participantesEvento.appendChild(numeroParticipantes);
+
+
+    let acabaElEvento = document.createElement("div");
+    acabaElEvento.classList.add("acabaEl");
+
+    let acabaEl = document.createElement("h5");
+    acabaEl.classList.add("ml-5");
+    let fecha = new Date(evento.fecha);
+    acabaEl.innerHTML = fecha.getDate() + " / " + fecha.getMonth() + 1 + " / " + fecha.getFullYear();
+
+    acabaElEvento.appendChild(acabaEl);
+
+    let verEvento = document.createElement("div");
+    verEvento.classList.add("verEvento");
+
+    let a = document.createElement("a");
+
+    let eventButton = document.createElement("button");
+    eventButton.classList.add("btn");
+    eventButton.classList.add("btn-success");
+    eventButton.classList.add("eventButton");
+    eventButton.type = "button"
+    eventButton.innerHTML = "Ver evento"
+
+    let icono = document.createElement("i");
+    icono.classList.add("fas");
+    icono.classList.add("fa-check");
+    icono.classList.add("ml-2");
+
+    //eventButton.appendChild(icono);
+
+    verEvento.appendChild(a);
+    a.appendChild(eventButton);
+
+    parteInferior.appendChild(participantesEvento);
+    parteInferior.appendChild(acabaElEvento);
+    parteInferior.appendChild(verEvento);
+
+    return parteInferior;
+
+
+}
+
+function getImagenDeporte() {
 
 }
 
 function init() {
     comunidadUsuario = document.querySelector(".comunidadUser").innerHTML;
-
-
     getTodosEventos();
 
 }
