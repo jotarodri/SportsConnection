@@ -31,3 +31,7 @@
 .fotoNombre {
     margin-top: 10%;
 }
+
+.eliminado {
+    display: none;
+}

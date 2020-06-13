@@ -1,40 +1,25 @@
-let ids;
-let titulos;
-let tipodeporte;
-let description;
-let nparticipantes;
-let nparticipantesMAX;
-let created_at;
-let fechas;
-let horas;
-let municipios;
-let direcciones;
-let user_ids;
-let comunidades;
-let links;
-let passwords;
+let eventos = [];
+let comunidadUsuario;
+let eventosComunidad = []; //Los eventos de la misma comunidad del usuario
+function getTodosEventos() {
+    let ids = document.querySelectorAll(".id");
+    let titulos = document.querySelectorAll(".tituloEvento");
+    let tipodeporte = document.querySelectorAll(".tipodeporte");
+    let description = document.querySelectorAll(".description");
+    let nparticipantes = document.querySelectorAll(".nparticipantes");
+    let nparticipantesMAX = document.querySelectorAll(".nparticipantesMAX");
+    let created_at = document.querySelectorAll(".created_at");
+    let passwords = document.querySelectorAll(".password");
+    let fechas = document.querySelectorAll(".fecha");
+    let horas = document.querySelectorAll(".hora");
+    let municipios = document.querySelectorAll(".municipio");
+    let direcciones = document.querySelectorAll(".direccion");
+    let user_ids = document.querySelectorAll(".user_id");
+    let comunidades = document.querySelectorAll(".comunidad");
+
+    let links = document.querySelectorAll(".links")[0].innerHTML;
 
 
-function init() {
-
-    ids = document.querySelectorAll(".id");
-    titulos = document.querySelectorAll(".tituloEvento");
-    tipodeporte = document.querySelectorAll(".tipodeporte");
-    description = document.querySelectorAll(".description");
-    nparticipantes = document.querySelectorAll(".nparticipantes");
-    nparticipantesMAX = document.querySelectorAll(".nparticipantesMAX");
-    created_at = document.querySelectorAll(".created_at");
-    passwords = document.querySelectorAll(".password");
-    fechas = document.querySelectorAll(".fecha");
-    horas = document.querySelectorAll(".hora");
-    municipios = document.querySelectorAll(".municipio");
-    direcciones = document.querySelectorAll(".direccion");
-    user_ids = document.querySelectorAll(".user_id");
-    comunidades = document.querySelectorAll(".comunidad");
-
-    links = document.querySelectorAll(".links")[0].innerHTML;
-
-    let eventos = [];
 
     for (let i = 0; i < links; i++) {
 
@@ -57,7 +42,38 @@ function init() {
 
     }
 
-    console.log(eventos);
+    filtrarPorComunidad();
+}
+
+function filtrarPorComunidad() {
+
+    eventos.forEach(evento => {
+
+        if (evento.comunidad == comunidadUsuario.toUpperCase()) {
+            let eventoComunidadUsuario = {
+                "titulo": evento.titulo,
+                "nparticipantes": evento.nparticipantes,
+                "nparticipantesMAX": evento.nparticipantesMAX,
+                "fecha": evento.fecha,
+                "hora": evento.hora,
+                "municipio": evento.municipio
+            }
+
+            eventosComunidad.push(eventoComunidadUsuario);
+        }
+
+    });
+
+    console.log(eventosComunidad);
+
+
+}
+
+function init() {
+    comunidadUsuario = document.querySelector(".comunidadUser").innerHTML;
+
+
+    getTodosEventos();
 
 }
 

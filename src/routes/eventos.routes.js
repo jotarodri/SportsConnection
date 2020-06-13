@@ -12,7 +12,7 @@ router.use(isLoggedIn);
 
 router.get('/add', renderAddEvento);
 router.post('/add', addEvento);
-router.get('/', isLoggedIn);
+//router.get('/', isLoggedIn);
 router.get('/delete/:id', deleteEvento);
 router.get('/edit/:id', renderEditEvento);
 router.post('/edit/:id', editEvento);

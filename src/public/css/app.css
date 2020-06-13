@@ -29,7 +29,6 @@
 .eventos {
     height: 100%;
     width: 100%;
-    background-color: red;
 }
 
 .botonEvento {
@@ -37,21 +36,19 @@
     height: 100px;
 }
 
-.containerEventos {
+.eventos {
+    margin-left: 1%;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 5%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 40px;
 }
 
-.eventos {
-    width: 100%;
-    height: 100%;
-    margin-bottom: 5%;
-}
-
 .tarjetaEvento {
     height: 300px;
-    width: 600px;
+    width: 500px;
     background-color: white;
     border: 2px solid black;
 }
