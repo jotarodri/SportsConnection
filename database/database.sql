@@ -6,16 +6,18 @@ USE sportsconnection;
 -- all pasword wil be encrypted using SHA1
 CREATE TABLE usuarios (
   id INT(11) NOT NULL,
-  usuario VARCHAR(16) NOT NULL,
+  username VARCHAR(16) NOT NULL,
   password VARCHAR(60) NOT NULL,
   nombrecompleto VARCHAR(100) NOT NULL,
+  correo VARCHAR(100) NOT NULL,
+  comunidad VARCHAR(100) NOT NULL,
   provincia VARCHAR(100) NOT NULL,
-  localidad VARCHAR(100) NOT NULL,
   añonacimiento DATE NOT NULL,
   deportefav VARCHAR(100) NOT NULL,
   equipo VARCHAR(100) NOT NULL,
   neventos VARCHAR(100) NOT NULL,
-  namigos VARCHAR(100) NOT NULL
+  namigos VARCHAR(100) NOT NULL,
+  descripcion VARCHAR(100) NOT NULL
 );
 
 ALTER TABLE usuarios
@@ -41,6 +43,7 @@ CREATE TABLE eventos (
   municipio VARCHAR(100),
   direccion VARCHAR(100),
   user_id INT(11),
+  comunidad VARCHAR(100),
   CONSTRAINT fk_userid FOREIGN KEY(user_id) REFERENCES usuarios(id)
 );
 
