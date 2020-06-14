@@ -3,6 +3,9 @@
     .none{
         display: none;
     }
+    .usuariosUnidos{
+        cursor: pointer;
+    }
 </style>
 <div class="col-md-4 mx-auto">
 
@@ -28,8 +31,12 @@
             <p class="none eventoUnido">{{unido}}</p>
             
             {{#each users}}
+            <div class="usuario">
+            <p class="none idUnidos">{{id}}</p>
             <p class="usuariosUnidos">{{username}}</p>
+            </div>
             {{/each}} 
+            
             </form>
         </div>
     </div>

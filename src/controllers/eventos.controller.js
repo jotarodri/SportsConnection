@@ -99,25 +99,23 @@ eventosCtrl.renderEventoIndividual = async(req, res) => {
 
     });
 
-    let listaUsuarios = []
+    console.log(req.params.id);
+
+
     const usuariosUnidos = await pool.query('SELECT * FROM unirse WHERE evento_id = ?', [req.params.id]);
     let users;
 
     for (let i = 0; i < usuariosUnidos.length; i++) {
-        users = await pool.query('SELECT username FROM usuarios WHERE id = ?', [usuariosUnidos[i].user_id]);
+        console.log("Se han unido" + usuariosUnidos[i]);
+
+        users = await pool.query('SELECT id, username FROM usuarios WHERE id = ?', [usuariosUnidos[i].user_id]);
     }
-    console.log("Usuarios unidos " + users);
-
-
 
     const links = await pool.query('SELECT * FROM eventos WHERE id = ?', [req.params.id]);
     res.render('eventos/evento', { links, unido, users });
 
 }
 
-eventosCtrl.getUsuariosUnidos = async(id) => {
-
-}
 
 
 

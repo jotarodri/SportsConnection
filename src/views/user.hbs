@@ -1,0 +1,27 @@
+<script src="/js/user.js"></script>
+
+<div class="col-md-4 mx-auto">
+
+    <div class="card">
+        <div class="card-body">
+            <form action="/user/{{usuario.id}}" method="POST">
+        
+                <div class="form-group">
+                    <p>{{usuario.username}}</p>
+                    <p>{{usuario.nombrecompleto}}</p>
+                    <p>{{usuario.correo}}</p>
+                    <p>{{usuario.provincia}}</p>
+                    <p>{{usuario.añonacimiento}}</p>
+                    <p>{{usuario.deportefav}}</p>
+                    <p>{{usuario.neventos}}</p>
+                    <p>{{usuario.descripcion}}</p>
+                    
+                    <button class="btn btn-success btn-block hacerseAmigos">
+                        Hacerse Amigos
+                    </button>
+                </div>
+                <p class="comprobante">{{comprobante}}</p>
+            </form>
+        </div>
+    </div>
+</div>

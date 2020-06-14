@@ -1,6 +1,7 @@
 let eventos = [];
 let comunidadUsuario;
 let eventosComunidad = []; //Los eventos de la misma comunidad del usuario
+
 function getTodosEventos() {
     let ids = document.querySelectorAll(".id");
     let titulos = document.querySelectorAll(".tituloEvento");

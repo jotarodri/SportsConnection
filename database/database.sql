@@ -52,3 +52,17 @@ ALTER TABLE eventos
   MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;
 
 DESCRIBE eventos;
+
+
+CREATE TABLE unirse (
+  user_id INT(11),
+  evento_id INT(11),
+  CONSTRAINT fk_userid2 FOREIGN KEY(user_id) REFERENCES usuarios(id),
+   CONSTRAINT fk_eventoid FOREIGN KEY(evento_id) REFERENCES eventos(id)
+);
+
+CREATE TABLE amigos (
+  user_id INT(11),
+  amigo_id INT(11),
+  CONSTRAINT fk_userid3 FOREIGN KEY(user_id) REFERENCES usuarios(id)
+);
