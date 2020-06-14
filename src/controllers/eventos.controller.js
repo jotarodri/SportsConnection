@@ -1,7 +1,6 @@
 const eventosCtrl = {};
 
 const pool = require('../database');
-const { renderApp } = require('./index.conroller');
 
 eventosCtrl.renderAddEvento = (req, res) => {
     res.render('eventos/add');
@@ -43,6 +42,11 @@ eventosCtrl.renderEventos = async(req, res) => {
 
 }
 
+eventosCtrl.renderApp = async(req, res) => {
+    const links = await pool.query('SELECT * FROM eventos');
+    res.render('./eventos/app', { links });
+
+};
 
 eventosCtrl.deleteEvento = async(req, res) => {
     const { id } = req.params;
@@ -75,5 +79,46 @@ eventosCtrl.getEventos = async(req, res) => {
     const links = await pool.query('SELECT * FROM eventos');
     return links;
 }
+
+eventosCtrl.renderEventoIndividual = async(req, res) => {
+
+    const unirse = await pool.query('SELECT * FROM unirse WHERE user_id = ?', [req.user[0].id]);
+    let unido; //SI ES TRUE YA SE HA UNIDO || SI ES FALSE ES LA PRIMERA VEZ QUE TE UNES
+
+    unirse.forEach(async element => {
+
+        if (element.user_id == req.user[0].id && element.evento_id == req.params.id) {
+
+
+            unido = "true";
+
+        } else {
+            unido = "false";
+
+        }
+
+    });
+
+    let listaUsuarios = []
+    const usuariosUnidos = await pool.query('SELECT * FROM unirse WHERE evento_id = ?', [req.params.id]);
+    let users;
+
+    for (let i = 0; i < usuariosUnidos.length; i++) {
+        users = await pool.query('SELECT username FROM usuarios WHERE id = ?', [usuariosUnidos[i].user_id]);
+    }
+    console.log("Usuarios unidos " + users);
+
+
+
+    const links = await pool.query('SELECT * FROM eventos WHERE id = ?', [req.params.id]);
+    res.render('eventos/evento', { links, unido, users });
+
+}
+
+eventosCtrl.getUsuariosUnidos = async(id) => {
+
+}
+
+
 
 module.exports = eventosCtrl;

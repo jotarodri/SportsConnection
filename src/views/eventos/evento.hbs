@@ -1,0 +1,36 @@
+<script src="/js/evento.js"></script>
+<style>
+    .none{
+        display: none;
+    }
+</style>
+<div class="col-md-4 mx-auto">
+
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                {{#each links}}
+                <div class="form-group">
+                    <p>{{titulo}}</p>
+                    <input value={{id}} class="none">
+                   
+                </div>
+                
+                <div class="form-group">
+                     
+                    <button class="btn btn-success btn-block unirseEvento">
+                        Unirse
+                    </button>
+                   
+                </div>
+            {{/each}}   
+                   
+            <p class="none eventoUnido">{{unido}}</p>
+            
+            {{#each users}}
+            <p class="usuariosUnidos">{{username}}</p>
+            {{/each}} 
+            </form>
+        </div>
+    </div>
+</div>

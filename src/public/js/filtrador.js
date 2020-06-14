@@ -24,6 +24,7 @@ function getTodosEventos() {
     for (let i = 0; i < links; i++) {
 
         let evento = {
+            "id": ids[i].innerHTML,
             "titulo": titulos[i].innerHTML,
             "tipodeporte": tipodeporte[i].innerHTML,
             "description": description[i].innerHTML,
@@ -51,6 +52,7 @@ function filtrarPorComunidad() {
 
         if (evento.comunidad == comunidadUsuario.toUpperCase()) {
             let eventoComunidadUsuario = {
+                "id": evento.id,
                 "titulo": evento.titulo,
                 "nparticipantes": evento.nparticipantes,
                 "nparticipantesMAX": evento.nparticipantesMAX,
@@ -150,6 +152,7 @@ function crearParteInferior(evento) {
     verEvento.classList.add("verEvento");
 
     let a = document.createElement("a");
+    a.href = "/evento/" + evento.id;
 
     let eventButton = document.createElement("button");
     eventButton.classList.add("btn");
@@ -174,13 +177,9 @@ function crearParteInferior(evento) {
 
     return parteInferior;
 
-
 }
 
 function getImagenDeporte(evento) {
-
-    console.log(evento);
-
 
     let tipodeporte = evento.deporte;
     let imagen;
