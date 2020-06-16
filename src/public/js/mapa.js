@@ -44,28 +44,32 @@ function listeners() {
 //AQUI EMPIEZA LA PARTE DEL MAPA
 function mostrarDatos() {
 
-    fetch('../others/espana-municipios.geojson')
+    fetch('../others/municipios.json')
         .then(function(response) {
             return response.json();
         })
         .then(function(myJson) {
-            datosJson = myJson;
+            datosJson = myJson[0];
+
             crearLocalidades();
         });
 
 }
 
 function crearLocalidades() {
-    datosJson.features.forEach(dato => {
-        if (dato.properties.provincia.toUpperCase() == provincia) {
+    datosJson.forEach(dato => {
+
+        if (dato.Provincia.toUpperCase() == provincia) {
 
             localidades = {
-                "localidad": dato.properties.municipio.toUpperCase(),
-                "coordenadaY": dato.properties.geo_point_2d[1],
-                "coordenadaX": dato.properties.geo_point_2d[0],
+                "localidad": dato.Población.toUpperCase(),
+                "longitud": dato.Latitud,
+                "latitud": dato.Longitud,
             };
             arrayaux.push(localidades);
         }
+
+
     });
     crearMapaInicial();
 }
@@ -117,6 +121,7 @@ function filtrarMunicipios() {
 
         let municipioSeleccionadoDiv = document.querySelector(".municipioSeleccionado");
         municipioSeleccionadoDiv.innerHTML = provincia;
+
         crearMapaInicial();
 
         if (listaMunicipios.hasChildNodes()) {
@@ -139,23 +144,27 @@ function getDatosMunicipio() {
     };
     let municipioSeleccionado = this.innerHTML;
 
+    let municipio = document.querySelector(".municipioElegido");
+    municipio.value = municipioSeleccionado;
+    console.log(municipio);
+
     arrayaux.forEach(municipio => {
         if (municipio.localidad == municipioSeleccionado) {
             datosSeleccionado = {
                 localidad: municipio.localidad,
-                coordenadaY: municipio.coordenadaX,
-                coordenadaX: municipio.coordenadaY,
+                longitud: municipio.longitud,
+                latitud: municipio.latitud,
             };
         }
     });
 
-    if (municipioSeleccionado = "") {
+    /*if (municipioSeleccionado = "") {
         municipioSeleccionado = provincia;
-    }
-    console.log(municipioSeleccionado);
-
+    }*/
 
     let municipioSeleccionadoDiv = document.querySelector(".municipioSeleccionado");
+    console.log(municipioSeleccionado);
+
     municipioSeleccionadoDiv.innerHTML = municipioSeleccionado;
 
 
@@ -165,12 +174,13 @@ function getDatosMunicipio() {
 
 function crearMapa(datosMunicipio) {
 
-    latitudEvento = datosMunicipio.coordenadaY;
-    longitudEvento = datosMunicipio.coordenadaX;
+    latitudEvento = datosMunicipio.latitud;
+    longitudEvento = datosMunicipio.longitud;
 
     mymap.off();
     mymap.remove();
-    mymap = L.map('map').setView([datosMunicipio.coordenadaY, datosMunicipio.coordenadaX], 17);
+    mymap = L.map('map').setView([longitudEvento, latitudEvento], 17);
+
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -181,12 +191,14 @@ function crearMapa(datosMunicipio) {
         accessToken: 'pk.eyJ1Ijoicm9kcmlndWV6am9yZ2UiLCJhIjoiY2tiODNuOGRuMDBoMjJ6cGJkN28yZGVlNCJ9.aSGvBk5e5Q1AYwLshakWxg'
     }).addTo(mymap);
 
-    L.marker([datosMunicipio.coordenadaY, datosMunicipio.coordenadaX], {
+    L.marker([longitudEvento, latitudEvento], {
             title: "Augusta Emerita",
             draggable: true,
             opacity: 0.75
-        }).bindPopup("<i>Augusta Emerita</i>").addEventListener("dragend", getCalle)
+        }).bindPopup("<i>Augusta Emerita</i>")
         .addTo(mymap);
+
+    mymap.on('click', getCalle);
 
 }
 
@@ -200,23 +212,36 @@ function crearMapaInicial() {
 
     let municipioOriginal = {
         "localidad": "",
-        "coordenadaY": "",
-        "coordenadaX": ""
+        "longitud": "",
+        "latitud": ""
     };
     if (datosJson != undefined) {
-        datosJson.features.forEach(dato => {
+        arrayaux.forEach(dato => {
 
-            if (dato.properties.municipio.toUpperCase() == provincia) {
+            if (dato.localidad.toUpperCase() == "VALENCIA") {
                 municipioOriginal = {
-                    "localidad": dato.properties.municipio.toUpperCase(),
-                    "coordenadaY": dato.properties.geo_point_2d[1],
-                    "coordenadaX": dato.properties.geo_point_2d[0],
+                    "localidad": dato.localidad.toUpperCase(),
+                    "longitud": dato.longitud,
+                    "latitud": dato.latitud,
                 };
+            } else {
+                if (dato.localidad.toUpperCase() == provincia) {
+                    municipioOriginal = {
+                        "localidad": dato.localidad.toUpperCase(),
+                        "longitud": dato.longitud,
+                        "latitud": dato.latitud,
+                    };
+                }
             }
+
+
 
         });
 
-        mymap = L.map('map').setView([municipioOriginal.coordenadaX, municipioOriginal.coordenadaY], 17).addEventListener("click", getCalle);
+        console.log(municipioOriginal);
+
+
+        mymap = L.map('map').setView([municipioOriginal.longitud, municipioOriginal.latitud], 17)
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -229,18 +254,15 @@ function crearMapaInicial() {
 
 
 
-        L.marker([municipioOriginal.coordenadaX, municipioOriginal.coordenadaY], {
+        L.marker([municipioOriginal.longitud, municipioOriginal.latitud], {
                 title: "Augusta Emerita",
-                draggable: true,
+                draggable: false,
                 opacity: 0.75
-            }).bindPopup("<i>Augusta Emerita</i>").addEventListener("dragend", getCalle)
+            }).bindPopup("<i>Augusta Emerita</i>")
             .addTo(mymap);
 
-        let inputLatitud = document.querySelector(".longitudElegida");
-        inputLatitud.value = municipioOriginal.coordenadaX;
+        mymap.on('click', getCalle);
 
-        let inputLongitud = document.querySelector(".latitudElegida");
-        inputLongitud.value = municipioOriginal.coordenadaY;
     }
 
 
@@ -254,18 +276,40 @@ function eliminarMunicipioSeleccionado() {
 
 }
 
-function getCalle() {
+function getCalle(e) {;
 
-    latitudEvento = this._latlng.lat;
-    longitudEvento = this._latlng.lng;
-    console.log(latitudEvento);
-    console.log(longitudEvento);
+    let ubicacion = e.latlng;
 
-    let inputLatitud = document.querySelector(".longitudElegida");
-    inputLatitud.value = longitudEvento;
 
-    let inputLongitud = document.querySelector(".latitudElegida");
-    inputLongitud.value = latitudEvento;
+    let inputLatiud = document.querySelector(".inputLatitud");
+    inputLatiud.value = ubicacion.lat;
+
+
+    let inputLongitud = document.querySelector(".inputLongitud");
+    inputLongitud.value = ubicacion.lng;
+    console.log(inputLatiud.value);
+    console.log(inputLongitud.value);
+    // console.log(ubicacionElegida.value);
+    mymap.off();
+    mymap.remove();
+
+
+    mymap = L.map('map').setView([ubicacion.lat, ubicacion.lng], 17)
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1Ijoicm9kcmlndWV6am9yZ2UiLCJhIjoiY2tiODNuOGRuMDBoMjJ6cGJkN28yZGVlNCJ9.aSGvBk5e5Q1AYwLshakWxg'
+    }).addTo(mymap);
+
+    L.marker([ubicacion.lat, ubicacion.lng], {
+        draggable: false,
+        opacity: 0.75
+    }).addTo(mymap);
+
+    mymap.on('click', getCalle);
 
 }
 

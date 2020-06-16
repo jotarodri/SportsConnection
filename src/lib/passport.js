@@ -5,6 +5,10 @@ const pool = require("../database");
 const helpers = require("./helpers");
 
 const { datosUsuario } = require("../controllers/auth.controller")
+var cookieSession = require('cookie-session')
+var express = require('express')
+
+var app = express()
 
 
 passport.use(
@@ -22,7 +26,7 @@ passport.use(
             let fecha = req.body.year + "-" + req.body.month + "-" + req.body.day;
             añonacimiento = fecha;
 
-            let comunidad = req.body.comunidades;
+            let comunidad = req.body.comunidades.toUpperCase();
             let provincia = req.body.provincias;
 
             let deportefav = req.body.deporteElegido;
@@ -77,7 +81,7 @@ passport.use(
                     user.password
                 );
                 if (validPassword) {
-                    done(null, user, req.flash("success", "Welcome " + user.username));
+                    done(null, user, req.flash("success", "Bienvenido " + user.username));
                 } else {
                     done(null, false, req.flash("message", "Incorrect Password"));
                 }

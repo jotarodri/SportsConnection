@@ -3,29 +3,22 @@
 {{>navigation}}
 {{>sidebar}}
 
-
-
-<div class="contenedor">-->
-  
-<div class="alerta mt-5">
-
-</div>
-  
+<div class="contenedor">
+  <!--{{>message}} 
+  -->
   <div class="crearEvento mt-5">
 
-    <h1 class="negrita">¿A que esperas para empezar a moverte?</h1>
+    <h4>Eventos que has creado o te has unido</h4>
 
-    <a href="/evento/add">
-      <button type="button" class="btn btn-primary botonEvento">Crear evento</button>
-    </a>
+   
   </div>
   <hr>
 
   <div class="containerEventos">
     
-<p class="links oculto">{{links.length}}</p>
+<p class="links oculto">{{eventosCreados.length}}</p>
   
-{{#each links}}
+{{#each eventosCreados}}
 <p class="id oculto">{{id}}</p>
 <p class="tituloEvento oculto">{{titulo}}</p>
 <p class="tipodeporte oculto">{{tipodeporte}}</p>
@@ -41,20 +34,23 @@
 <p class="user_id oculto">{{user_id}}</p>
 <p class="comunidad oculto">{{comunidad}}</p>
 {{/each}}
-  <div class="eventos">
-    {{#each links}}
 
+
+
+  <div class="eventos">
+    {{#each eventosCreados}}
+      <p class="oculto id">{{{eventosCreados.id}}}</p>
       <div class="tarjetaEvento">
         <div class="parteSuperior">
 
         </div>
         <div class="parteInferior">
-        
+
         </div>
       </div>
 
     {{/each}}
-    <p class="oculto user">{{{usernameCreador}}}</p>
+    
   </div>
 
   
@@ -63,5 +59,4 @@
 
 </div>
 
-<!--</div>
-</div>-->
+</div>

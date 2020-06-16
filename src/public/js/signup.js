@@ -6,7 +6,7 @@ let contraseña;
 let contraseña2;
 
 /* Variables para guardar las comunidades y los datos del json*/
-let comunidadesaux = [];
+let comunidadesaux = ["Andalucía", "Aragón", "Asturias", "Canarias", "Cantabria", "Castilla La Mancha", "Castilla León", "Catalunya", "Extremadura", "Galicia", "Islas Baleares", "La Rioja", "Madrid", "Murcia", "Navarra", "País Vasco", "Valencia"];
 let datosJson;
 
 let deporteElegido;
@@ -49,8 +49,8 @@ function iniciarComprobantes() {
     let comprobanteNombre = comprobarNombre();
     let comprobanteUsuario = comprobarUsuario();
     let comprobanteCorreo = comprobarCorreo();
-    /*let comprobanteContraseña = comprobarContraseña();
-    let comprobanteContraseñaRepetida = comprobarContraseñaRepetida();*/
+    let comprobanteContraseña = comprobarContraseña();
+    let comprobanteContraseñaRepetida = comprobarContraseñaRepetida();
 
 
     let nombre = document.getElementsByClassName("nombre")[0].value;
@@ -95,48 +95,48 @@ function iniciarComprobantes() {
 
         }
 
-        /* if (!comprobanteContraseña) {
+        if (!comprobanteContraseña) {
 
-             let alerta = document.createElement("div");
-             alerta.classList.add("alert");
-             alerta.classList.add("alert-danger");
-             alerta.innerHTML = "La contraseña no cumple los requisitos";
-             alertas.appendChild(alerta);
+            let alerta = document.createElement("div");
+            alerta.classList.add("alert");
+            alerta.classList.add("alert-danger");
+            alerta.innerHTML = "La contraseña no cumple los requisitos";
+            alertas.appendChild(alerta);
 
-             let cruz = document.createElement("img");
-             cruz.classList.add("cruz");
-             cruz.src = "/img/cruz.png";
-             cruz.width = "15";
-             cruz.height = "15";
-             alerta.appendChild(cruz);
+            let cruz = document.createElement("img");
+            cruz.classList.add("cruz");
+            cruz.src = "/img/cruz.png";
+            cruz.width = "15";
+            cruz.height = "15";
+            alerta.appendChild(cruz);
 
-             cruz.addEventListener("click", deleteAlerta);
+            cruz.addEventListener("click", deleteAlerta);
 
-         }
+        }
 
-         if (!comprobanteContraseñaRepetida) {
+        if (!comprobanteContraseñaRepetida) {
 
-             let alerta = document.createElement("div");
-             alerta.classList.add("alert");
-             alerta.classList.add("alert-danger");
-             alerta.innerHTML = "Las contraseñas no coinciden";
-             alertas.appendChild(alerta);
+            let alerta = document.createElement("div");
+            alerta.classList.add("alert");
+            alerta.classList.add("alert-danger");
+            alerta.innerHTML = "Las contraseñas no coinciden";
+            alertas.appendChild(alerta);
 
-             let cruz = document.createElement("img");
-             cruz.classList.add("cruz");
-             cruz.src = "/img/cruz.png";
-             cruz.width = "15";
-             cruz.height = "15";
-             alerta.appendChild(cruz);
+            let cruz = document.createElement("img");
+            cruz.classList.add("cruz");
+            cruz.src = "/img/cruz.png";
+            cruz.width = "15";
+            cruz.height = "15";
+            alerta.appendChild(cruz);
 
-             cruz.addEventListener("click", deleteAlerta);
+            cruz.addEventListener("click", deleteAlerta);
 
-         }*/
+        }
 
 
     }
 
-    if (comprobanteNombre && comprobanteUsuario && comprobanteCorreo /*&& comprobanteContraseña && comprobanteContraseñaRepetida*/ ) {
+    if (comprobanteNombre && comprobanteUsuario && comprobanteCorreo && comprobanteContraseña && comprobanteContraseñaRepetida) {
         //Si todo ha ido bien vamos al paso 2
         alPasoDos();
 
@@ -225,15 +225,19 @@ function rellenarProvincias() {
     let comunidad = document.querySelectorAll(".comunidades")[0].value;
     selectProvincias = [];
     for (let i = 0; i < datosJson.length; i++) {
+        if (datosJson[i].Comunidad == comunidad) {
 
-        if (datosJson[i].fields.ccaa == comunidad) {
-            selectProvincias.push(datosJson[i].fields.provincia);
+            selectProvincias.push(datosJson[i].Provincia);
+
+
         }
-
-
     }
 
-    addOptions("provincias", selectProvincias)
+    var unique = selectProvincias.filter(onlyUnique);
+    console.log(unique);
+
+
+    addOptions("provincias", unique)
 
 }
 // Rutina para agregar opciones a un <select>
@@ -374,18 +378,13 @@ function onlyUnique(value, index, self) {
 
 function mostrarDatos() {
 
-    fetch('../others/provincias-espanolas.json')
+    fetch('../others/municipios.json')
         .then(function(response) {
             return response.json();
         })
         .then(function(myJson) {
-            datosJson = myJson;
-            for (let i = 0; i < myJson.length; i++) {
-
-                comunidadesaux.push(myJson[i].fields.ccaa);
-                var comunidades = comunidadesaux.filter(onlyUnique);
-            }
-            addOptions("comunidades", comunidades)
+            datosJson = myJson[0];
+            addOptions("comunidades", comunidadesaux)
 
         });
 

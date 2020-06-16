@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(session({
-    secret: 'faztmysqlnodemysql',
+    secret: 'jorge',
     resave: false,
     saveUninitialized: false,
     store: new MySQLStore(database)
@@ -51,9 +51,7 @@ app.use((req, res, next) => {
     if (req.isAuthenticated()) {
         app.locals.userDatos = req.user[0];
     }
-    // app.locals.eventos = req.links;
 
-    next
     next();
 });
 

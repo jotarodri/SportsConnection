@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="/css/user.css">
+<script src="/js/user.js"></script>
+{{>navigation}}
+{{>sidebar}}
+<div class="contenedor">
+<div class="col-md-8 mx-auto containerTarjeta">
+
+    <div class="card tarjeta">
+        <div class="card-body">
+            <form action="/user/{{usuario.id}}" method="POST">
+        
+                <div class="form-group">
+                  <p class="none id">{{usuario.id}}</p>
+                   <p class="none user">{{usuario.username}}</p>
+                   
+                    
+                    
+                <div class="imagenNombre">
+                   <div class="imagenUsuario">
+                      <img src="/img/perfil.webp" alt="" height="150" width="150" class="logo" class="fotoPerfil">
+                   </div>
+                   <div class="nombreUsuario">
+                      <h3 class="usernameUser">{{usuario.username}}</h3>
+                   </div>
+                </div>
+
+                </div>
+
+                 <div class="form-group flex-center">
+                  
+                <div class="informacion1 flex">
+                   <div class="nombreCompleto flex-center">
+                     <h5 class="title">Nombre: </h5> 
+                     <p class="espacio">_</p>
+                     <h5> {{usuario.nombrecompleto}}</h5>
+                   </div>
+                   <div class="info flex-center">
+                       <h5 class="title">Correo: </h5> 
+                       <p class="espacio">_</p>
+                     <h5> {{usuario.correo}}</h5>
+                   </div>
+
+                   <div class="info flex-center">
+                       <h5 class="title">Provincia: </h5> 
+                     <h5 class="provincia none"> {{usuario.provincia}}</h5>
+                     <p class="espacio">_</p>
+                     <h5 class="provinciaReal"></h5>
+                   </div>
+
+                   <div class="info flex-center">
+                       <h5 class="title">Año de nacimiento: </h5> 
+                       <p class="espacio">_</p>
+                     <h5 class="fecha"> {{usuario.añonacimiento}}</h5>
+                     
+                   </div>
+                </div>
+
+                </div>
+
+  <div class="form-group flex-center">
+                  
+                <div class="informacion1 flex">
+                   <div class="nombreCompleto flex-center">
+                     <h5 class="title">Deporte favorito: </h5> 
+                     <p class="espacio">_</p>
+                     <h5> {{usuario.deportefav}}</h5>
+                   </div>
+                   <div class="info flex-center">
+                       <h5 class="title">Nº eventos: </h5> 
+                       <p class="espacio">_</p>
+                     <h5> {{usuario.neventos}}</h5>
+                   </div>
+
+                   <div class="info flex-center">
+                       <h5 class="title">Amigos: </h5> 
+      
+                     <p class="espacio">_</p>
+                     <h5 class="provinciaReal"> {{usuario.namigos}}</h5>
+                   </div>
+
+                   
+                </div>
+
+                </div>
+
+                  <div class="form-group flex-center">
+                  
+                <div class="descripcionContainer">
+                    <div class="descripcion flex-center">
+                    <h5 class="descripcion">Descripcion del usuario</h5>
+                   </div>
+                   <div class="contenidoDescripcion flex-center">
+                     <p> {{usuario.descripcion}}</p>
+                   </div>
+                   
+                </div>
+
+                </div>
+
+         
+                
+            </form>
+        </div>
+    </div>
+</div>
+</div>

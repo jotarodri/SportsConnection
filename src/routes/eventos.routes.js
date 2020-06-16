@@ -4,7 +4,8 @@ const router = express.Router();
 
 const { isLoggedIn } = require('../lib/auth');
 
-const { renderApp, renderAddEvento, addEvento, deleteEvento, editEvento, renderEditEvento, renderEventoIndividual } = require('../controllers/eventos.controller')
+const { renderApp, renderAddEvento, addEvento, deleteEvento, editEvento, renderEditEvento, renderEventoIndividual, comentarEvento } = require('../controllers/eventos.controller');
+const { unirseEvento } = require('../controllers/user.controller');
 
 // Authorization
 router.use(isLoggedIn);
@@ -18,6 +19,7 @@ router.get('/delete/:id', deleteEvento);
 router.get('/edit/:id', renderEditEvento);
 router.get('/:id', renderEventoIndividual);
 router.post('/edit/:id', editEvento);
-
+router.post('/unirse', unirseEvento);
+router.post('/comentar', comentarEvento);
 
 module.exports = router;

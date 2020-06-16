@@ -10,13 +10,11 @@
 }*/
 
 .contenedor {
-    height: 100%;
+    height: 100vh;
     margin-left: 250px;
     padding: 1px 16px;
-    background-position: center center;
+    background-image: url("/img/backgrounds/futbol.jpg");
     background-size: cover;
-    background-repeat: no-repeat;
-    z-index: -900;
 }
 
 .crearEvento {
@@ -27,17 +25,10 @@
     align-items: center;
     height: 200px;
     background-color: #B7B2B1;
-    opacity: 0.9;
     border-radius: 40px 40px 40px 40px;
 }
 
-.negrita {
-    font-weight: 600;
-    z-index: 99999;
-}
-
 .eventos {
-    color: blue;
     height: 100%;
     width: 100%;
 }
@@ -45,7 +36,6 @@
 .botonEvento {
     width: 200px;
     height: 100px;
-    margin-left: 50% !important;
 }
 
 .eventos {
@@ -74,17 +64,7 @@
 
 .parteInferior {
     display: flex;
-    height: 45%;
-    width: 100%;
-    color: white;
-    background-color: #151719;
-}
-
-.creadoPor {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 8%;
+    height: 53%;
     width: 100%;
     color: white;
     background-color: #151719;
@@ -130,6 +110,8 @@
     color: white;
 }
 
+.containerEventos {}
+
 .acabaEl {
     width: 40%;
     display: flex;
@@ -160,24 +142,4 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-@keyframes slideBg {
-    0% {
-        opacity: 0;
-        -o-animation-timing-function: ease-in;
-    }
-    8% {
-        opacity: 1;
-        -o-animation-timing-function: ease-out;
-    }
-    17% {
-        opacity: 1
-    }
-    25% {
-        opacity: 0
-    }
-    100% {
-        opacity: 0
-    }
 }

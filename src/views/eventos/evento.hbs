@@ -1,31 +1,145 @@
 <script src="/js/evento.js"></script>
-<style>
-    .none{
-        display: none;
-    }
-    .usuariosUnidos{
-        cursor: pointer;
-    }
-</style>
-<div class="col-md-4 mx-auto">
+<link rel="stylesheet" href="/css/evento.css">
+{{>navigation}}
+{{>sidebar}}
+<div class="contenedor">
+<div class="col-md-6 mx-auto tarjetaContainer">
+    <div class="containerComentarios invisible">
+       
+                <div class="tituloComents">
+                    <h3>Comentarios</h3>
+                    <form action="/comentar" method="POST" name="formComentario">
+                     
+                    <div class="cabeceraComents flex-center">
+                        
+                    <textarea name="comentario" id="" cols="100" rows="5"></textarea>
+                    {{#each links}}
+                        <input value={{id}} class="none" name="idEvento">
+                        {{/each}} 
+                    <div class="right btn btn-success hazComentario">
+                        <p>Haz un comentario</p>
+                    </div>
+                    </div>
 
-    <div class="card">
+                    <div class="listaComents mt-5">
+                    {{#each usuariosComent}}
+                        <p>{{username}}</p>
+                    {{/each}} 
+                    <div class="comentario">
+                        
+                        {{#each comentarios}}
+                        <p>{{mensaje}}</p>
+                        {{/each}} 
+                        
+                    </div>
+                    </div>
+
+
+
+                    </form>
+                </div>
+                <hr>
+                
+                <!--<div class="flex-center mb-4">
+                    <button class="flex-center btn btn-danger cerrarComents"> Cerrar</button>
+                </div>-->
+            </div>
+<div class="divUsers invisible">
+             
+              <div class=" mt-3">
+                <p class="flex-center">Usuarios unidos</p>
+                <ul class="listaMunicipioSeleccionado listaUsuariosUnidos">
+                  
+                  
+                  
+                </ul>
+                <div class="flex-center mb-4">
+                    <button class="flex-center btn btn-danger cerrarUsers"> Cerrar</button>
+                </div>
+    
+             </div>
+            </div>
+    <div class="card tarjeta borde">
         <div class="card-body">
-            <form method="POST">
+            <form action="/unirse" method="POST" >
                 {{#each links}}
-                <div class="form-group">
-                    <p>{{titulo}}</p>
+                <div class="form-group tituloContainer">
+                   
+                    <div class="tituloDiv">
+                        <h2>{{titulo}}</h2>
+                    </div>
+
+                     <div class="imagenDeporte">
+                        <p class="none deporte">{{tipodeporte}}</p>
+                    </div>
+                    
                     <input value={{id}} class="none">
                    
                 </div>
-                
-                <div class="form-group">
-                     
-                    <button class="btn btn-success btn-block unirseEvento">
-                        Unirse
-                    </button>
+                <hr>
+
+                <div class="form-group participantesFecha">
+                   
+                    <div class=" ml-5 participantesDiv">
+                        <h5>Participantes: {{nparticipantes}} / {{nparticipantesMAX}}</h5>
+                    </div>
+
+                    
+
+                     <div class="fechaDiv mr-5">
+                           <p class="none fecha"> {{fecha}}</p>
+                           <p class="none hora"> {{hora}}</p>
+                       <h5 class="fechaHora"></h5>
+                    </div>
+                    
+                    <input name="id" value={{id}} class="none idEvento">
+                    
                    
                 </div>
+
+                <hr>
+
+                 <div class="form-group">
+
+                <div class="resultados col-xs-12 col-md-12 mt-3">
+                <ul class="listaMunicipioSeleccionado">
+                  
+                  <li class="municipioSeleccionado">{{municipio}} </li>
+                  
+                </ul>
+                
+              </div>
+
+            
+                   <p class="none direccion">{{direccion}}</p>
+                    <div id="map"></div>
+
+                   
+                </div>
+                    <h4 class="text-center">Descripción del evento</h4>
+                    <hr>
+                <div class="form-group flex-center">
+                     <p>{{description}}</p>
+                   
+                </div>
+                <hr>
+               
+                <div class="form-group divBotones">
+                     <button class="btn btn-success btn-block unirseEvento boton">
+                        Unirse al evento
+                    </button>
+                    <div class="btn btn-primary btn-block botonParticipantes">
+                        Ver participantes
+                    </div>
+                    
+                 </div>
+                 <div class="divBotones">
+
+                   <div class="btn btn-primary btn-block botonComentarios">
+                        Ver comentarios
+                </div>
+                </div>
+                
             {{/each}}   
                    
             <p class="none eventoUnido">{{unido}}</p>
@@ -33,11 +147,19 @@
             {{#each users}}
             <div class="usuario">
             <p class="none idUnidos">{{id}}</p>
-            <p class="usuariosUnidos">{{username}}</p>
+            <p class="none usuariosUnidos">{{username}}</p>
             </div>
             {{/each}} 
-            
+            {{#each nombre}}
+            <input name="nombre" value={{username}} class="none">
+              {{/each}} 
             </form>
-        </div>
+
+         </div>
     </div>
 </div>
+</div>
+
+  <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8N-QJbll1msnAUGZY45mVqdqQYCk-F-U&callback=crearMapaInicial">
+    </script>

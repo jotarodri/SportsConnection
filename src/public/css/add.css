@@ -3,11 +3,15 @@
     padding: 0;
 }
 
+body {
+    background-image: url("/img/backgrounds/tenis.jpg");
+    background-size: cover;
+}
+
 .contenedor {
     margin-left: 250px;
     padding: 1px 16px;
     height: 100%;
-    background-image: url("/img/fondo2.jpg");
     background-size: 100% 100%;
     z-index: 0;
 }

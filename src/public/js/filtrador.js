@@ -38,7 +38,7 @@ function getTodosEventos() {
             "direccion": direcciones[i].innerHTML,
             "user_id": user_ids[i].innerHTML,
             "comunidad": comunidades[i].innerHTML,
-            "creado:el": created_at[i].innerHTML
+            "creado_el": created_at[i].innerHTML
         }
         eventos.push(evento);
 
@@ -59,6 +59,7 @@ function filtrarPorComunidad() {
                 "nparticipantesMAX": evento.nparticipantesMAX,
                 "fecha": evento.fecha,
                 "hora": evento.hora,
+                "creado": evento.creado_el,
                 "municipio": evento.municipio,
                 "deporte": evento.tipodeporte
             }
@@ -76,26 +77,40 @@ function filtrarPorComunidad() {
 function crearDivs() {
     let eventos = document.querySelector(".eventos");
     eventosComunidad.forEach(evento => {
-        let tarjetaEvento = document.createElement("div");
-        tarjetaEvento.classList.add("tarjetaEvento");
+        let tarjetaEvento = document.querySelector(".tarjetaEvento");
 
-        let parteSuperior = crearParteSuperior(evento);
-        let parteInferior = crearParteInferior(evento);
+
+        let parteSuperior = document.querySelector(".parteSuperior");
+        crearParteSuperior(evento, parteSuperior);
+
+        let parteInferior = document.querySelector(".parteInferior");
+        crearParteInferior(evento, parteInferior);
+
+        let creadoPorDiv = document.createElement("div");
+        let creadoPor = document.createElement("p");
+        creadoPor.innerHTML = "Creado por " + document.querySelector(".user").innerHTML;
+        console.log(document.querySelector(".user").innerHTML);
+
+        creadoPorDiv.classList.add("creadoPor");
+
+        creadoPorDiv.appendChild(creadoPor);
+
 
         tarjetaEvento.appendChild(parteSuperior);
         tarjetaEvento.appendChild(parteInferior);
+        tarjetaEvento.appendChild(creadoPorDiv);
         eventos.appendChild(tarjetaEvento);
     });
 
 
 }
 
-function crearParteSuperior(evento) {
+function crearParteSuperior(evento, parteSuperior) {
 
 
-    let parteSuperior = document.createElement("div");
+    /*let parteSuperior = document.createElement("div");
     parteSuperior.classList.add("parteSuperior");
-
+*/
     let imageDeporte = document.createElement("div");
     imageDeporte.classList.add("imagenDeporte");
     imageDeporte.style.backgroundImage = "url(" + getImagenDeporte(evento) + ")";
@@ -124,22 +139,35 @@ function crearParteSuperior(evento) {
     return parteSuperior;
 }
 
-function crearParteInferior(evento) {
-    let parteInferior = document.createElement("div");
-    parteInferior.classList.add("parteInferior");
+function crearParteInferior(evento, parteInferior) {
+    /* let parteInferior = document.createElement("div");
+     parteInferior.classList.add("parteInferior");*/
 
     let participantesEvento = document.createElement("div");
     participantesEvento.classList.add("participantesEvento");
 
-    let numeroParticipantes = document.createElement("h5");
-    numeroParticipantes.classList.add("ml-5");
-    numeroParticipantes.innerHTML = evento.nparticipantes + " / " + evento.nparticipantesMAX;
+    let participantes = document.createElement("p");
+    participantes.innerHTML = "Participantes"
 
-    participantesEvento.appendChild(numeroParticipantes);
+    participantes.classList.add("flex-center")
+    participantes.classList.add("ml-3");
+
+    participantesEvento.appendChild(participantes)
+    let numeroParticipantes = document.createElement("h5");
+
+    numeroParticipantes.innerHTML = evento.nparticipantes + " de " + evento.nparticipantesMAX;
+
+    participantes.appendChild(numeroParticipantes);
 
 
     let acabaElEvento = document.createElement("div");
     acabaElEvento.classList.add("acabaEl");
+
+    let acaba = document.createElement("p");
+    acaba.innerHTML = "Acaba el"
+    acaba.classList.add("flex-center");
+
+    acabaElEvento.appendChild(acaba);
 
     let acabaEl = document.createElement("h5");
     acabaEl.classList.add("ml-5");
@@ -147,7 +175,7 @@ function crearParteInferior(evento) {
     let mes = fecha.getMonth() + 1;
     acabaEl.innerHTML = fecha.getDate() + " / " + mes + " / " + fecha.getFullYear();
 
-    acabaElEvento.appendChild(acabaEl);
+    acaba.appendChild(acabaEl);
 
     let verEvento = document.createElement("div");
     verEvento.classList.add("verEvento");
@@ -175,6 +203,8 @@ function crearParteInferior(evento) {
     parteInferior.appendChild(participantesEvento);
     parteInferior.appendChild(acabaElEvento);
     parteInferior.appendChild(verEvento);
+
+
 
     return parteInferior;
 
@@ -220,9 +250,28 @@ function getImagenDeporte(evento) {
     return imagen;
 }
 
+
+function changeImage() {
+
+    var listaimg = ["/img/backgrounds/futbol.jpg", "/img/backgrounds/basket.jpg", "/img/backgrounds/running.jpg", "/img/backgrounds/tenis.jpg", "/img/backgrounds/beisbol.jpg", "/img/backgrounds/padel.jpg", "/img/backgrounds/senderismo.jpg"];
+
+    /*$('body').css("background-image", 'url(' + listaimg[index] + ')');
+     */
+
+    let random = Math.floor(Math.random() * (6 - 0)) + 0;
+    console.log("random" + random);
+
+    let contenedor = document.querySelector(".contenedor");
+
+    contenedor.style.backgroundImage = "url(" + listaimg[random] + ")";
+    contenedor.style.animation = "slideBg 0s linear";
+}
+
 function init() {
     comunidadUsuario = document.querySelector(".comunidadUser").innerHTML;
     getTodosEventos();
+
+    changeImage();
 
 }
 

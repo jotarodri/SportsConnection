@@ -49,7 +49,9 @@ authCtrl.signUp = passport.authenticate('local.signup', {
 
 
 authCtrl.renderSignIn = (req, res, next) => {
+
     res.render('auth/signin');
+
 };
 
 authCtrl.signIn = passport.authenticate('local.signin', {
@@ -59,6 +61,7 @@ authCtrl.signIn = passport.authenticate('local.signin', {
 });
 
 authCtrl.logout = (req, res, next) => {
+    //   res.cookie.clear();
     req.logOut();
     req.user = null;
     res.redirect('/');

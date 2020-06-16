@@ -7,10 +7,16 @@ eventosCtrl.renderAddEvento = (req, res) => {
 };
 
 eventosCtrl.addEvento = async(req, res) => {
-    const { titulo, tipodeporte, nparticipantesMAX, day, month, year, hora, password, description, municipio, inputLongitud, inputLatitud, comunidad } = req.body;
+
+    let { titulo, tipodeporte, nparticipantesMAX, day, month, year, hora, password, description, municipio, inputLongitud, inputLatitud, comunidad } = req.body;
     let fecha = year + "-" + month + "-" + day;
-    let direccion = inputLatitud + " - " + inputLongitud;
+    let direccion = inputLatitud + " / " + inputLongitud;
     let nparticipantes = "1";
+
+    if (municipio == "VALENCIA/VALÈNCIA") {
+        municipio = "VALENCIA"
+    }
+    console.log(direccion);
 
     const newLink = {
         titulo,
@@ -29,7 +35,12 @@ eventosCtrl.addEvento = async(req, res) => {
     const result = await pool.query('INSERT INTO eventos set ?', [newLink]);
     newLink.id = result.insertId;
     req.flash('success', 'Evento Creado Correctamente');
-    //res.redirect('/app', { result });
+
+    const links = await pool.query('SELECT * FROM eventos WHERE comunidad = ?', [comunidad]);
+
+    await pool.query('INSERT INTO unirse (user_id, evento_id) VALUES (?,?)', [req.user[0].id, newLink.id]);
+
+    res.render('./app', { links });
 
 
 }
@@ -43,7 +54,10 @@ eventosCtrl.renderEventos = async(req, res) => {
 }
 
 eventosCtrl.renderApp = async(req, res) => {
-    const links = await pool.query('SELECT * FROM eventos');
+    const comunidad = await pool.query('SELECT comunidad FROM usuarios WHERE id = ?', [req.user[0].id]);
+    console.log(comunidad.toUpperCase());
+
+    const links = await pool.query('SELECT * FROM eventos WHERE comunidad = ?', [comunidad.toUpperCase()]);
     res.render('./eventos/app', { links });
 
 };
@@ -89,7 +103,6 @@ eventosCtrl.renderEventoIndividual = async(req, res) => {
 
         if (element.user_id == req.user[0].id && element.evento_id == req.params.id) {
 
-
             unido = "true";
 
         } else {
@@ -99,24 +112,55 @@ eventosCtrl.renderEventoIndividual = async(req, res) => {
 
     });
 
-    console.log(req.params.id);
-
-
     const usuariosUnidos = await pool.query('SELECT * FROM unirse WHERE evento_id = ?', [req.params.id]);
     let users;
 
     for (let i = 0; i < usuariosUnidos.length; i++) {
-        console.log("Se han unido" + usuariosUnidos[i]);
+
 
         users = await pool.query('SELECT id, username FROM usuarios WHERE id = ?', [usuariosUnidos[i].user_id]);
     }
 
+
     const links = await pool.query('SELECT * FROM eventos WHERE id = ?', [req.params.id]);
-    res.render('eventos/evento', { links, unido, users });
+    const nombre = await pool.query('SELECT username FROM usuarios WHERE id = ?', [req.user[0].id]);
+
+    const todosLosComents = await pool.query('SELECT * FROM comentarios WHERE evento_id = ?', [req.params.id]);
+    const comentarios = await pool.query('SELECT mensaje FROM comentarios WHERE evento_id = ?', [req.params.id]);
+    let usuariosComent;
+    for (let i = 0; i < todosLosComents.length; i++) {
+        const usuarios = await pool.query('SELECT username FROM usuarios WHERE id = ?', [todosLosComents[i].user_id]);
+        usuariosComent = usuarios;
+
+    }
+
+
+    console.log(usuariosComent);
+
+    res.render('eventos/evento', { links, unido, users, nombre, comentarios, usuariosComent });
 
 }
 
+eventosCtrl.comentarEvento = async(req, res) => {
 
+    const { idEvento } = req.body;
+    const { comentario } = req.body;
+    const idUser = req.user[0].id;
 
+    await pool.query('INSERT INTO comentarios(user_id, evento_id, mensaje) VALUES(?,?,?)', [idUser, idEvento, comentario]);
+
+    const todosLosComents = await pool.query('SELECT * FROM comentarios WHERE evento_id = ?', [idEvento]);
+    //  const nombres = await pool.query('SELECT username FROM usuarios WHERE id = ?', [todosLosComents.user_id]);
+    let comentarios = [];
+    const coments = await pool.query('SELECT mensaje FROM comentarios WHERE evento_id = ?', [idEvento]);
+    console.log(coments);
+    let nombres;
+    for (let i = 0; i < todosLosComents.length; i++) {
+        let nombres = await pool.query('SELECT id,username FROM usuarios WHERE id = ?', [todosLosComents[i].user_id]);
+        console.log(nombres);
+    }
+    res.render('eventos/evento', { links, unido, users, nombre });
+
+}
 
 module.exports = eventosCtrl;
