@@ -38,7 +38,7 @@ userCtrl.unirseEvento = async(req, res, next) => {
 
     const links = await pool.query("SELECT * FROM eventos where id = ?", [req.user[0].id]);
     
-res.render('./eventos/evento'+idEvento, { links, newUser, users });
+res.render('./eventos/evento'+idEvento, { links, newUser });
 
 }
 
