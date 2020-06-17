@@ -49,7 +49,7 @@ userCtrl.unirseEvento = async(req, res, next) => {
 
     
 
-    res.render('./eventos/evento', { links, newUser, users });
+    res.render('./eventos/evento'+idEvento, { links, newUser, users });
 
 }
 
@@ -66,6 +66,7 @@ userCtrl.renderMisEventos = async(req, res, next) => {
 }
 
 userCtrl.renderApp = async(req, res) => {
+
     const comunidad = await pool.query('SELECT comunidad FROM usuarios WHERE id = ?', [req.user[0].id]);
     console.log(comunidad[0].comunidad);
     let comunidadUser = comunidad[0].comunidad;
