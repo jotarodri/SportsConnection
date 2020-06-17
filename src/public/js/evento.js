@@ -246,7 +246,6 @@ function hacerComentario() {
 
 }
 
-
 function bloquearBotonUnirse() {
     form = document.querySelector(".unirse");
     let formUnirse = document.querySelectorAll(".formUnirse")[0];
@@ -269,56 +268,7 @@ function bloquearBotonUnirseAcabado() {
     boton.innerHTML = "El evento ha finalizado";
 }
 
-function crearComentario29() {
-    let comentarios = document.querySelectorAll(".uno");
-    console.log(comentarios);
 
-    comentarios.forEach(element => {
-        element.classList.remove("none")
-    });
-
-    //let unidos = document.querySelectorAll(.uno)
-}
-
-function crearComentario31() {
-    let comentarios = document.querySelectorAll(".dos");
-    console.log(comentarios);
-
-    comentarios.forEach(element => {
-        element.classList.remove("none")
-    });
-
-    //let unidos = document.querySelectorAll(.uno)
-}
-
-function crearComentario32() {
-    let comentarios = document.querySelectorAll(".tres");
-    console.log(comentarios);
-
-    comentarios.forEach(element => {
-        element.classList.remove("none")
-    });
-
-    //let unidos = document.querySelectorAll(.uno)
-}
-
-/*function habilitarBorrar() {
-    // let editar = document.querySelector(".editar");
-    let borrar = document.querySelector(".borrar");
-
-    //editar.classList.remove("none");
-    borrar.classList.remove("none");
-
-    console.log(borrar);
-
-    borrar.addEventListener("click", enviarFormBorrar);
-}
-
-function enviarFormBorrar() {
-    let form = document.getElementById("myForm")
-    console.log(form);
-
-}*/
 
 function init() {
 
@@ -339,22 +289,6 @@ function init() {
     if (nparticipantes == nparticipantesMAX) {
         bloquearBotonUnirse();
     }
-
-    if (id == 29) {
-        crearComentario29();
-    }
-    if (id == 31) {
-        bloquearBotonUnirseAcabado();
-        crearComentario31();
-    }
-    if (id == 32) {
-        //bloquearBotonUnirseAcabado();
-        crearComentario32();
-    }
-    if (idUser == idUnidos) {
-        habilitarBorrar();
-    }
-
 
 }
 
