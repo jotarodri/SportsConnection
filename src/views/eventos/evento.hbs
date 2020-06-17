@@ -170,7 +170,7 @@
     <div class="card tarjeta borde">
         <div class="card-body">
             <div class="unirse">
-            
+            <form action="/unirse" method="POST" class="formUnirse">
             </div>
                 {{#each links}}
                 <div class="form-group tituloContainer">
@@ -205,9 +205,7 @@
                        <h5 class="fechaHora"></h5>
                     </div>
                     
-                    <input name="id" value={{
-                        
-                    }} class="none idEvento xi">
+                    <input name="id" value={{user_id}} class="none idEvento xi">
                     
                    
                 </div>
@@ -240,15 +238,13 @@
                 <hr>
                
                 <div class="form-group divBotones">
-                    <form action="/unirse" method="POST" class="formUnirse">
-                    <input name= "idEvento" value={{id}} type="text" class="none">
                      <button class="btn btn-success btn-block unirseEvento boton">
                         Unirse al evento
                     </button>
                     <div class="btn btn-primary btn-block botonParticipantes">
                         Ver participantes
                     </div>
-                    </form>
+                    
                  </div>  
                  <div class="form-group divBotones">
                  
@@ -274,7 +270,18 @@
                 </div>
                 
             {{/each}}   
-           
+                   
+            <p class="none eventoUnido">{{unido}}</p>
+            
+            {{#each users}}
+            <div class="usuario">
+            <p class="none idUnidos">{{id}}</p>
+            <p class="none usuariosUnidos">{{username}}</p>
+            </div>
+            {{/each}} 
+            {{#each nombre}}
+            <input name="nombre" value={{username}} class="none">
+              {{/each}} 
             </form>
 
          </div>
