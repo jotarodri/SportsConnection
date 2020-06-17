@@ -1,12 +1,10 @@
 module.exports = {
 
-    database: {
-        host: "b8bc017858bec2",
-        user: "36f1c644",
-        password: "eu-cdbr-west-03.cleardb.net",
+   host: "eu-cdbr-west-03.cleardb.net",
+        user: "b8bc017858bec2",
+        password: "36f1c644",
         database: "heroku_54a0fc249008a70"
     }
-    
 
 
 };
