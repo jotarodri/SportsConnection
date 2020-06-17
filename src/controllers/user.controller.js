@@ -29,27 +29,24 @@ userCtrl.unirseEvento = async(req, res, next) => {
 
     });
 
-    if (unido == "false") {
+    
         await pool.query('INSERT INTO unirse (user_id, evento_id) VALUES (?,?)', [idUsuario, idEvento]);
-    }
+    
     unido = "true";
     await pool.query("UPDATE eventos SET nparticipantes = nparticipantes+1 WHERE id = ?", [idEvento]);
 
-    const usuariosUnidos = await pool.query('SELECT * FROM unirse WHERE evento_id = ?', [req.params.id]);
+    const usuariosUnidos = await pool.query('SELECT user_id FROM unirse WHERE evento_id = ?', [req.params.id]);
 
     let users = [];
     let user;
     
     await pool.query("UPDATE usuarios SET neventos=neventos+1 where id=? ", [req.user[0].id]);
 
-    const newUser = await pool.query('SELECT * FROM usuarios WHERE id = ?', [req.params.id]);
+    const newUser = await pool.query('SELECT * FROM usuarios WHERE id = ?', [usuariosUnidos[0].user_id]);
 
     const links = await pool.query("SELECT * FROM eventos where id = ?", [req.user[0].id]);
-    console.log(links);
-
     
-
-    res.render('./eventos/evento'+idEvento, { links, newUser, users });
+res.render('./eventos/evento'+idEvento, { links, newUser, users });
 
 }
 
