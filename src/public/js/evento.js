@@ -44,6 +44,8 @@ function cambiarEstilo() {
         console.log("DESBLOQUEADO");
     }
 
+    
+
 
 }
 
