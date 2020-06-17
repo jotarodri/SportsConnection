@@ -1,8 +1,11 @@
 let unido;
 let usuarios = [];
 let usuariosComunidad = [];
-
+let id;
 var mapa;
+let form;
+let idUser;
+let idUnidos;
 
 function listeners() {
     let boton = document.querySelector(".verUsuario");
@@ -14,11 +17,13 @@ function listeners() {
     let cerrarUsers = document.querySelector(".cerrarUsers");
     cerrarUsers.addEventListener("click", mostrarParticipantes);
 
-    let botonComentarios = document.querySelector(".botonComentarios");
-    botonComentarios.addEventListener("click", mostrarComentarios);
+    let botonComentarios = document.querySelectorAll(".botonComentarios");
+    botonComentarios.forEach(element => {
+        element.addEventListener("click", mostrarComentarios);
+    });
 
-    let hazComentario = document.querySelector(".hazComentario");
-    hazComentario.addEventListener("click", hacerComentario);
+    let botonComent = document.querySelector(".hazComentario");
+    botonComent.addEventListener("click", hacerComentario)
 }
 
 function cambiarEstilo() {
@@ -223,55 +228,100 @@ function mostrarParticipantes() {
 
 function mostrarComentarios() {
 
+
     document.querySelector(".tarjeta").classList.toggle("invisible")
     document.querySelector(".containerComentarios").classList.toggle("invisible")
 }
 
 function hacerComentario() {
+    console.log("VAS A HACER COMENTARIO");
+    let comentario = document.querySelector(".comentarioEscrito");
+    let value = comentario.value.toUpperCase();
+    let input = document.querySelector(".coment");
+    input.value = value;
     document.formComentario.submit();
+
+
 }
 
-function setUsersUnidos() {
-    let listaUsers = document.querySelector(".listaUsuariosUnidos");
-    let usuariosUnidos = document.querySelectorAll(".usuariosUnidos");
-    let idUnidos = document.querySelectorAll(".idUnidos");
-    console.log(idUnidos[0].innerHTML);
 
-    let arrayUsers = [];
+function bloquearBotonUnirse() {
+    form = document.querySelector(".unirse");
+    let formUnirse = document.querySelectorAll(".formUnirse")[0];
+    form.removeChild(formUnirse);
+    let boton = document.querySelector(".unirseEvento");
+    boton.classList.remove("btn-success");
+    boton.classList.add("btn-danger");
+    boton.classList.remove("unirseEvento");
+    boton.innerHTML = "Ya no puedes unirte";
+}
 
-    for (let i = 0; i < usuariosUnidos.length; i++) {
+function bloquearBotonUnirseAcabado() {
+    form = document.querySelector(".unirse");
+    let formUnirse = document.querySelectorAll(".formUnirse")[0];
+    form.removeChild(formUnirse);
+    let boton = document.querySelector(".unirseEvento");
+    boton.classList.remove("btn-success");
+    boton.classList.add("btn-danger");
+    boton.classList.remove("unirseEvento");
+    boton.innerHTML = "El evento ha finalizado";
+}
 
-        let usuario = {
-            "nombre": usuariosUnidos[i].innerHTML,
-            "id": idUnidos[i].innerHTML,
-        }
-        arrayUsers.push(usuario);
-    }
+function crearComentario29() {
+    let comentarios = document.querySelectorAll(".uno");
+    console.log(comentarios);
 
-    console.log(arrayUsers);
-
-
-    arrayUsers.forEach(element => {
-
-        let usuario = document.createElement("li");
-        usuario.innerHTML = element.nombre;
-        usuario.classList.add("usuarioUnido");
-        let botonVer = document.createElement("div");
-        botonVer.innerHTML = "Ver";
-        botonVer.value = element.id;
-        botonVer.classList.add("verUsuario");
-        botonVer.classList.add("btn");
-        botonVer.classList.add("btn-light")
-        usuario.appendChild(botonVer);
-        listaUsers.appendChild(usuario);
+    comentarios.forEach(element => {
+        element.classList.remove("none")
     });
 
+    //let unidos = document.querySelectorAll(.uno)
 }
 
+function crearComentario31() {
+    let comentarios = document.querySelectorAll(".dos");
+    console.log(comentarios);
+
+    comentarios.forEach(element => {
+        element.classList.remove("none")
+    });
+
+    //let unidos = document.querySelectorAll(.uno)
+}
+
+function crearComentario32() {
+    let comentarios = document.querySelectorAll(".tres");
+    console.log(comentarios);
+
+    comentarios.forEach(element => {
+        element.classList.remove("none")
+    });
+
+    //let unidos = document.querySelectorAll(.uno)
+}
+
+/*function habilitarBorrar() {
+    // let editar = document.querySelector(".editar");
+    let borrar = document.querySelector(".borrar");
+
+    //editar.classList.remove("none");
+    borrar.classList.remove("none");
+
+    console.log(borrar);
+
+    borrar.addEventListener("click", enviarFormBorrar);
+}
+
+function enviarFormBorrar() {
+    let form = document.getElementById("myForm")
+    console.log(form);
+
+}*/
+
 function init() {
+
     unido = document.querySelector(".eventoUnido").innerHTML;
     cambiarEstilo();
-    setUsersUnidos();
     listeners();
     getUsuarios();
     ponerImagen();
@@ -279,6 +329,29 @@ function init() {
     crearMapaInicial();
     setBackground();
 
+    id = document.querySelector(".idEvento").value;
+    nparticipantes = document.querySelector(".npart").value;
+    nparticipantesMAX = document.querySelector(".npartMAX").value;
+    idUser = document.querySelector(".idUser").value;
+    idUnidos = document.querySelector(".xi").value;
+    if (nparticipantes == nparticipantesMAX) {
+        bloquearBotonUnirse();
+    }
+
+    if (id == 29) {
+        crearComentario29();
+    }
+    if (id == 31) {
+        bloquearBotonUnirseAcabado();
+        crearComentario31();
+    }
+    if (id == 32) {
+        //bloquearBotonUnirseAcabado();
+        crearComentario32();
+    }
+    if (idUser == idUnidos) {
+        habilitarBorrar();
+    }
 
 
 }

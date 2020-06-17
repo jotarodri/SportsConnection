@@ -1,6 +1,7 @@
 let eventos = [];
 let comunidadUsuario;
 let eventosComunidad = []; //Los eventos de la misma comunidad del usuario
+let id;
 
 function getTodosEventos() {
     let ids = document.querySelectorAll(".id");
@@ -88,14 +89,13 @@ function crearDivs() {
 
         let creadoPorDiv = document.createElement("div");
         let creadoPor = document.createElement("p");
-        creadoPor.innerHTML = "Creado por " + document.querySelector(".user").innerHTML;
-        console.log(document.querySelector(".user").innerHTML);
+        if (id == 29) {
+            creadoPor.innerHTML = "Creado por pepegarcia123";
 
+        }
         creadoPorDiv.classList.add("creadoPor");
 
         creadoPorDiv.appendChild(creadoPor);
-
-
         tarjetaEvento.appendChild(parteSuperior);
         tarjetaEvento.appendChild(parteInferior);
         tarjetaEvento.appendChild(creadoPorDiv);

@@ -11,24 +11,7 @@ userCtrl.renderUserProfile = async(req, res, next) => {
     const datosUsuario = await pool.query('SELECT * FROM usuarios WHERE id = ?', [idUsuarioClickado]);
     let usuario = datosUsuario[0];
 
-    let comprobante;
-    const todosAmigos = await pool.query("SELECT * FROM amigos WHERE user_id = ?", [usuario.id]);
-
-    console.log(todosAmigos);
-
-    todosAmigos.forEach(async element => {
-
-        if (element.amigo_id == idAmigo) {
-            comprobante = "Ya sois amigos";
-        } else {
-            comprobante = "No sois amigos";
-        }
-
-    });
-    console.log(comprobante);
-
-
-    res.render('./user/user', { usuario, comprobante });
+    res.render('./user/user', { usuario });
 }
 
 userCtrl.unirseEvento = async(req, res, next) => {
@@ -86,11 +69,14 @@ userCtrl.unirseEvento = async(req, res, next) => {
 
 userCtrl.renderMisEventos = async(req, res, next) => {
 
-    const eventosCreados = await pool.query('SELECT * FROM eventos WHERE user_id = ?', [req.user[0].id]);
-    const idEvento = await pool.query('SELECT evento_id FROM unirse WHERE user_id = ?', [req.user[0].id]);
-    const eventosUnidos = await pool.query('SELECT * FROM eventos WHERE id = ?', [idEvento]);
+    /*const eventosCreados = await pool.query('SELECT evento_id FROM unirse WHERE user_id = ?', [req.user[0].id]);
+    console.log(eventosCreados);*/
+    const eventos = await pool.query('SELECT * FROM eventos WHERE user_id = ?', [req.user[0].id]);
 
-    res.render('./user/eventos', { eventosCreados, eventosUnidos });
+
+    /*const eventosUnidos = await pool.query('SELECT * FROM eventos WHERE id = ?', [idEvento]);
+     */
+    res.render('./user/eventos', { eventos });
 }
 
 userCtrl.renderApp = async(req, res) => {
@@ -99,53 +85,6 @@ userCtrl.renderApp = async(req, res) => {
     let comunidadUser = comunidad[0].comunidad;
 
     const links = await pool.query('SELECT * FROM eventos WHERE comunidad = ?', [comunidadUser]);
-
-    let ids = [];
-    for (let i = 0; i < links.length; i++) {
-        ids.push(links[i].id)
-
-    }
-
-    const users = await pool.query('SELECT * FROM usuarios WHERE comunidad = ?', [comunidadUser]);
-    let tamaño = users.length + ids.length;
-
-
-    let datosUsuario = {
-        "username": "",
-        "id": "",
-        "evento_id": ""
-    }
-    try {
-        for (let i = 0; i < tamaño; i++) {
-            if (links[i].user_id == users[i].id) {
-
-                let username = await pool.query('SELECT id,username FROM usuarios WHERE id = ?', [users[i].id]);
-                console.log(username);
-            }
-
-        }
-    } catch (error) {
-
-    }
-
-
-    let tamaño2 = username.length + ids.length;
-
-    try {
-        for (let i = 0; i < tamaño2; i++) {
-            datosUsuario = {
-                "username": username[i].username,
-                "id": username[i].id,
-                "evento_id": ids[i]
-            }
-
-        }
-    } catch (error) {
-
-    }
-    console.log(datosUsuario);
-
-
 
     res.render('./app', { links });
 

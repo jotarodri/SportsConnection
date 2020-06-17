@@ -14,6 +14,22 @@
     justify-content: center;
 }
 
+.userComment {
+    margin-left: 5%;
+}
+
+.textarea {
+    margin-left: 5%;
+}
+
+.comentario {
+    margin-left: 5%;
+}
+
+.tituloComents {
+    width: 800px;
+}
+
 .tarjeta {
     width: 1000px !important;
     height: 100%;
@@ -171,4 +187,10 @@
 .hazComentario {
     margin-left: 5%;
     height: 40px;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: c;
 }

@@ -12,44 +12,127 @@
                      
                     <div class="cabeceraComents flex-center">
                         
-                    <textarea name="comentario" id="" cols="100" rows="5"></textarea>
+                    <textarea name="comentario" id="" cols="80" rows="5" class="comentarioEscrito"></textarea>
                     {{#each links}}
-                        <input value={{id}} class="none" name="idEvento">
+                        <input value={{id}} class="none idEvento xe" name="idEvento">
+                        
                         {{/each}} 
+                        <input class="none coment" name="coment">
                     <div class="right btn btn-success hazComentario">
                         <p>Haz un comentario</p>
                     </div>
                     </div>
 
                     <div class="listaComents mt-5">
-                    {{#each usuariosComent}}
-                        <p>{{username}}</p>
-                    {{/each}} 
-                    <div class="comentario">
-                        
-                        {{#each comentarios}}
-                        <p>{{mensaje}}</p>
+                        <p class="userComment">{{userDatos.username}}:</p>
+                     <div class="comentario">
+                         {{#each coments}}
+                        <p>{{comentario}}</p>
                         {{/each}} 
+                     </div>
+                    </div>
+
+                    <div class="listaComents mt-5 uno none">
+                        <p class="userComment">rodriguezjorge:</p>
+                     <div class="comentario">
+                        <p>Allí estaré</p>
+                     </div>
+                    </div>
+                    <hr>
+                    <div class="listaComents mt-5 uno none">
+                        <p class="userComment">rodriguezjorge:</p>
+                     <div class="comentario">
+                        <p>Hola</p>
+                     </div>
+                    </div>
+                    <hr>
+
+                    <div class="listaComents mt-5 uno none">
                         
+                        <p class="userComment">pepegarcia123:</p>
+                     <div class="comentario">
+                        <p>Probando comentario</p>
+                     </div>
                     </div>
+                    <hr>
+
+                    <div class="listaComents mt-5 uno none">
+                        <p class="userComment">jotarodri07:</p>
+                     <div class="comentario">
+                        <p>ghsadgdhsahas</p>
+                     </div>
                     </div>
+                    <hr>
 
+                     <div class="listaComents mt-5 uno none">
+                        <p class="userComment">pepegarcia123:</p>
+                     <div class="comentario">
+                        <p>Probando comentarios</p>
+                     </div>
+                    </div>
+                    <hr>
 
+<div class="flex-center mb-4">
+                    <button class="flex-center btn btn-danger botonComentarios"> Cerrar</button>
+                </div>
 
                     </form>
                 </div>
+                  
                 <hr>
                 
                 <!--<div class="flex-center mb-4">
                     <button class="flex-center btn btn-danger cerrarComents"> Cerrar</button>
                 </div>-->
             </div>
-<div class="divUsers invisible">
+            
+            <div class="divUsers invisible">
              
               <div class=" mt-3">
                 <p class="flex-center">Usuarios unidos</p>
                 <ul class="listaMunicipioSeleccionado listaUsuariosUnidos">
                   
+                  <div class="none uno dos tres cuatro">
+                  <li class="usuarioUnido">rodriguezjorge
+                      <a href="/user/4">
+                       <div class="verUsuario btn btn-light">
+                      Ver
+                  </div>
+                  </a>
+                  </li>
+</div>
+<div class="none uno tres">
+                  <li class="usuarioUnido">jotarodri07
+                      <a href="/user/9"> <div class="verUsuario btn btn-light">
+                      Ver
+                  </div></a>
+                  </li>
+                  </div>
+
+                  
+<div class="none uno dos">
+                  <li class="usuarioUnido uno dos cuatro">pepegarcia123
+                      <a href="/user/8">
+                       <div class="verUsuario btn btn-light">
+                      Ver
+                  </div>
+                  </a>
+                  </li>
+                  </div>
+<div class="none uno">
+                 <li class="usuarioUnido uno">juanperez12
+                       <div class="verUsuario btn btn-light">
+                      Ver
+                  </div>
+                  </li>
+                  </div>
+    <div class="none uno">
+                  <li class="usuarioUnido ">manolo321
+                       <div class="verUsuario btn btn-light">
+                      Ver
+                  </div>
+                  </li></div>
+                 
                   
                   
                 </ul>
@@ -61,7 +144,9 @@
             </div>
     <div class="card tarjeta borde">
         <div class="card-body">
-            <form action="/unirse" method="POST" >
+            <div class="unirse">
+            <form action="/unirse" method="POST" class="formUnirse">
+            </div>
                 {{#each links}}
                 <div class="form-group tituloContainer">
                    
@@ -74,6 +159,7 @@
                     </div>
                     
                     <input value={{id}} class="none">
+                    <input value={{user_id}} class="none idUser">
                    
                 </div>
                 <hr>
@@ -82,6 +168,8 @@
                    
                     <div class=" ml-5 participantesDiv">
                         <h5>Participantes: {{nparticipantes}} / {{nparticipantesMAX}}</h5>
+                        <input value={{nparticipantes}} class="none npart" name="npart">
+                        <input value={{nparticipantesMAX}} class="none npartMAX" name="npartMAX">
                     </div>
 
                     
@@ -92,7 +180,7 @@
                        <h5 class="fechaHora"></h5>
                     </div>
                     
-                    <input name="id" value={{id}} class="none idEvento">
+                    <input name="id" value={{user_id}} class="none idEvento xi">
                     
                    
                 </div>
@@ -132,12 +220,28 @@
                         Ver participantes
                     </div>
                     
-                 </div>
-                 <div class="divBotones">
+                 </div>  
+                 <div class="form-group divBotones">
+                 
 
                    <div class="btn btn-primary btn-block botonComentarios">
                         Ver comentarios
                 </div>
+                </div>
+              
+              
+               
+                
+                
+                
+
+                <div class="form-group divBotones">
+                      <!--<button class="btn btn-success btn-block unirseEvento boton editar none">
+                        Editar
+                    </button>-->
+                    
+                 </div>
+                 
                 </div>
                 
             {{/each}}   

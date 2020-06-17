@@ -71,9 +71,9 @@
             
             <div class="form-group verde">
              <!-- <a href="/signup2">-->
-              <button class="btn btn-light btn-block siguiente1 verde">
+              <div class="btn btn-light btn-block siguiente1 verde">
                 <img src="/img/flecha.png" alt="" height="100">
-              </button>
+              </div>
              <!-- </a>-->
             </div>
 
@@ -229,14 +229,14 @@
             
             <div class="form-group flechas">
                  
-              <button class="btn btn-light btn-block roja">
+              <div class="btn btn-light btn-block roja">
                   <img src="/img/roja.png" alt="" height="100">
-              </button>
+              </div>
               </a>
              
-              <button class="btn btn-light btn-block siguiente2">
+              <div class="btn btn-light btn-block siguiente2">
                 <img src="/img/flecha.png" alt="" height="100">
-              </button>
+              </div>
               </a>
             </div>
 
@@ -340,21 +340,3 @@
 </div>
 
 </div>
-
-<script> function changeImage() {
-
-    var listaimg = ["/img/backgrounds/futbol.jpg", "/img/backgrounds/basket.jpg", "/img/backgrounds/running.jpg", "/img/backgrounds/tenis.jpg", "/img/backgrounds/beisbol.jpg", "/img/backgrounds/padel.jpg", "/img/backgrounds/senderismo.jpg"];
-
-    /*$('body').css("background-image", 'url(' + listaimg[index] + ')');
-     */
-
-    let random = Math.floor(Math.random() * (6 - 0)) + 0;
-    console.log("random" + random);
-
-    let contenedor = document.querySelector("body");
-
-    contenedor.style.backgroundImage = "url(" + listaimg[random] + ")";
-  
-}
-window.onload = changeImage;
-</script>

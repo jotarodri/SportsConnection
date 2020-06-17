@@ -41,7 +41,7 @@ authCtrl.renderSignUp = (req, res) => {
 };
 
 authCtrl.signUp = passport.authenticate('local.signup', {
-    successRedirect: '/signin',
+    successRedirect: '/app',
     failureRedirect: '/signup',
     failureFlash: true
 });

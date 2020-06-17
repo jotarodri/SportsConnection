@@ -64,9 +64,11 @@ eventosCtrl.renderApp = async(req, res) => {
 
 eventosCtrl.deleteEvento = async(req, res) => {
     const { id } = req.params;
-    await pool.query('DELETE FROM eventos WHERE ID = ?', [id]);
+    console.log(id);
+
+    /*await pool.query('DELETE FROM eventos WHERE ID = ?', [id]);
     req.flash('success', 'Evento Borrado Correctamente');
-    res.redirect('/eventos');
+    res.redirect('/eventos');*/
 };
 
 eventosCtrl.renderEditEvento = async(req, res) => {
@@ -125,19 +127,14 @@ eventosCtrl.renderEventoIndividual = async(req, res) => {
     const links = await pool.query('SELECT * FROM eventos WHERE id = ?', [req.params.id]);
     const nombre = await pool.query('SELECT username FROM usuarios WHERE id = ?', [req.user[0].id]);
 
-    const todosLosComents = await pool.query('SELECT * FROM comentarios WHERE evento_id = ?', [req.params.id]);
-    const comentarios = await pool.query('SELECT mensaje FROM comentarios WHERE evento_id = ?', [req.params.id]);
-    let usuariosComent;
-    for (let i = 0; i < todosLosComents.length; i++) {
-        const usuarios = await pool.query('SELECT username FROM usuarios WHERE id = ?', [todosLosComents[i].user_id]);
-        usuariosComent = usuarios;
 
-    }
+    const coments = await pool.query('SELECT * FROM comentarios where user_id = ? AND evento_id = ?', [req.user[0].id, req.params.id]);
+
+    const username = await pool.query('SELECT username FROM usuarios where id = ?', [req.user[0].id]);
 
 
-    console.log(usuariosComent);
 
-    res.render('eventos/evento', { links, unido, users, nombre, comentarios, usuariosComent });
+    res.render('eventos/evento', { links, unido, users, nombre, coments });
 
 }
 
@@ -145,21 +142,17 @@ eventosCtrl.comentarEvento = async(req, res) => {
 
     const { idEvento } = req.body;
     const { comentario } = req.body;
-    const idUser = req.user[0].id;
 
-    await pool.query('INSERT INTO comentarios(user_id, evento_id, mensaje) VALUES(?,?,?)', [idUser, idEvento, comentario]);
+    await pool.query('INSERT INTO comentarios(comentario, user_id, evento_id) VALUES(?,?,?)', [comentario, req.user[0].id, idEvento]);
 
-    const todosLosComents = await pool.query('SELECT * FROM comentarios WHERE evento_id = ?', [idEvento]);
-    //  const nombres = await pool.query('SELECT username FROM usuarios WHERE id = ?', [todosLosComents.user_id]);
-    let comentarios = [];
-    const coments = await pool.query('SELECT mensaje FROM comentarios WHERE evento_id = ?', [idEvento]);
-    console.log(coments);
-    let nombres;
-    for (let i = 0; i < todosLosComents.length; i++) {
-        let nombres = await pool.query('SELECT id,username FROM usuarios WHERE id = ?', [todosLosComents[i].user_id]);
-        console.log(nombres);
-    }
-    res.render('eventos/evento', { links, unido, users, nombre });
+    const coments = await pool.query('SELECT * FROM comentarios where user_id = ? AND evento_id = ?', [req.user[0].id, idEvento]);
+
+    const username = await pool.query('SELECT username FROM usuarios where id = ?', [req.user[0].id]);
+
+
+    const links = await pool.query('SELECT * FROM eventos WHERE id = ?', [idEvento]);
+
+    res.render('eventos/evento', { links, coments, username });
 
 }
 

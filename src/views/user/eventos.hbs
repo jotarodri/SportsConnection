@@ -1,14 +1,14 @@
-<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/eventos.css">
 <script src="/js/filtrador.js"></script>
 {{>navigation}}
 {{>sidebar}}
 
+
 <div class="contenedor">
-  <!--{{>message}} 
-  -->
+  
   <div class="crearEvento mt-5">
 
-    <h4>Eventos que has creado o te has unido</h4>
+    <h4>Eventos que has creado</h4>
 
    
   </div>
@@ -16,9 +16,9 @@
 
   <div class="containerEventos">
     
-<p class="links oculto">{{eventosCreados.length}}</p>
+<p class="links oculto">{{eventos.length}}</p>
   
-{{#each eventosCreados}}
+{{#each eventos}}
 <p class="id oculto">{{id}}</p>
 <p class="tituloEvento oculto">{{titulo}}</p>
 <p class="tipodeporte oculto">{{tipodeporte}}</p>
@@ -38,8 +38,8 @@
 
 
   <div class="eventos">
-    {{#each eventosCreados}}
-      <p class="oculto id">{{{eventosCreados.id}}}</p>
+    {{#each eventos}}
+      <p class="oculto id">{{{id}}}</p>
       <div class="tarjetaEvento">
         <div class="parteSuperior">
 
@@ -54,8 +54,6 @@
   </div>
 
   
-
-</div>
 
 </div>
 
