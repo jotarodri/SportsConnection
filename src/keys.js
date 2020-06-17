@@ -1,4 +1,5 @@
 module.exports = {
+    
 database:{
          host: "eu-cdbr-west-03.cleardb.net",
         user: "b8bc017858bec2",

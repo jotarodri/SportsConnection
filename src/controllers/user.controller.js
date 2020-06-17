@@ -16,17 +16,7 @@ userCtrl.renderUserProfile = async(req, res, next) => {
 
 userCtrl.unirseEvento = async(req, res, next) => {
 
-    let idUsuario = req.user[0].id; //Si me meto con otro usuario comprobar si cambia
-    let idEvento = req.body.id;
-
-    console.log(idEvento);
-
-
-    const unirse = await pool.query('SELECT * FROM unirse');
-
-    let unido; //SI ES TRUE YA SE HA UNIDO || SI ES FALSE ES LA PRIMERA VEZ QUE TE UNES
-
-    unirse.forEach(async element => {
+   unirse.forEach(async element => {
 
         if (element.user_id == idUsuario && element.evento_id == idEvento) {
 
@@ -49,21 +39,17 @@ userCtrl.unirseEvento = async(req, res, next) => {
 
     let users = [];
     let user;
+    
+    await pool.query("UPDATE usuarios SET neventos=neventos+1 where id=? ", [req.user[0].id]);
 
-    for (let i = 0; i < usuariosUnidos.length; i++) {
-        user = await pool.query('SELECT id, username FROM usuarios WHERE id = ?', [usuariosUnidos[i].user_id]);
-        users.push(user[0]);
-        console.log(users[i].username);
+    const newUser = await pool.query('SELECT * FROM usuarios WHERE id = ?', [req.params.id]);
 
-    }
-
-
-    await pool.query("UPDATE usuarios SET neventos=neventos+1 where id=? ", [idUsuario]);
-
-    const links = await pool.query("SELECT * FROM eventos where id = ?", [idEvento]);
+    const links = await pool.query("SELECT * FROM eventos where id = ?", [req.user[0].id]);
     console.log(links);
 
-    res.render('./eventos/evento', { links, unido, users });
+    
+
+    res.render('./eventos/evento', { links, newUser, users });
 
 }
 
