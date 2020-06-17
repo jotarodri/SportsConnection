@@ -55,10 +55,12 @@ eventosCtrl.renderEventos = async(req, res) => {
 
 eventosCtrl.renderApp = async(req, res) => {
     const comunidad = await pool.query('SELECT comunidad FROM usuarios WHERE id = ?', [req.user[0].id]);
-    console.log(comunidad.toUpperCase());
+    console.log(comunidad[0].comunidad);
+    let comunidadUser = comunidad[0].comunidad;
 
-    const links = await pool.query('SELECT * FROM eventos WHERE comunidad = ?', [comunidad.toUpperCase()]);
-    res.render('./eventos/app', { links });
+    const links = await pool.query('SELECT * FROM eventos WHERE comunidad = ?', [comunidadUser]);
+
+    res.render('./app', { links });
 
 };
 
