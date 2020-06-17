@@ -54,6 +54,7 @@ eventosCtrl.renderEventos = async(req, res) => {
 }
 
 eventosCtrl.renderApp = async(req, res) => {
+    
     const comunidad = await pool.query('SELECT comunidad FROM usuarios WHERE id = ?', [req.user[0].id]);
     console.log(comunidad[0].comunidad);
     let comunidadUser = comunidad[0].comunidad;
